@@ -50,6 +50,11 @@ def insert(t, element, key):
 
 def rotateLeft(t, node):
     # (raíz) A -> B -> C
+
+    # Caso especial:
+    if node.rightnode.bf > 0:
+        rotateRight(t, node.rightnode)
+
     a = node
     b = node.rightnode
 
@@ -80,6 +85,11 @@ def rotateLeft(t, node):
 
 def rotateRight(t, node):
     # C <- B <- A (raiz)
+    
+    # Caso especial:
+    if node.leftnode.bf < 0:
+        rotateLeft(t, node.leftnode)
+
     a = node
     b = node.leftnode
 
