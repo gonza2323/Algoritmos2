@@ -13,16 +13,17 @@ class AVLNode:
 
 
 def _insertNode(currentNode, newNode):    
-    newNode.parent = currentNode
     if newNode.key < currentNode.key:
         if currentNode.leftnode is None:
             currentNode.leftnode = newNode
+            newNode.parent = currentNode
             return newNode.key
         else:
             return _insertNode(currentNode.leftnode, newNode)
     elif newNode.key > currentNode.key:
         if currentNode.rightnode is None:
             currentNode.rightnode = newNode
+            newNode.parent = currentNode
             return newNode.key
         else:
             return _insertNode(currentNode.rightnode, newNode)
