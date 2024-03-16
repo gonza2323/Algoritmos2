@@ -48,7 +48,7 @@ def insert(t, element, key):
 
 
 def rotateLeft(t, node):
-    # A -> B -> C
+    # (raíz) A -> B -> C
     a = node
     b = node.rightnode
 
@@ -78,7 +78,7 @@ def rotateLeft(t, node):
 
 
 def rotateRight(t, node):
-    # C <- B <- A
+    # C <- B <- A (raiz)
     a = node
     b = node.leftnode
 
@@ -114,7 +114,7 @@ def calculateNodeBalance(node):
     
     leftHeight = calculateNodeBalance(node.leftnode)
     rightHeight = calculateNodeBalance(node.rightnode)
-    node.value = leftHeight - rightHeight
+    node.bf = leftHeight - rightHeight
     return max(leftHeight, rightHeight) + 1
     
 
