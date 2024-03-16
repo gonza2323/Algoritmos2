@@ -48,6 +48,83 @@ def insert(t, element, key):
     return _insertNode(t.root, newNode);
 
 
+def _findNodeByValue(node, value):    
+    if node is None:
+        return None
+    
+    if node.value == value:
+        return node
+    
+    return _findNodeByValue(node.leftnode, value) or _findNodeByValue(node.rightnode, value)
+
+
+def _findNodeByKey(node, key):    
+    if node is None:
+        return None
+    
+    if node.key == key:
+        return node
+    elif key < node.key:
+        return _findNodeByKey(node.leftnode, key)
+    else:
+        return _findNodeByKey(node.rightnode, key)
+
+
+def _findSmallest(node):
+    if node is None:
+        return None
+    
+    if node.leftnode is None:
+        return node
+    
+    return _findSmallest(node.leftnode)
+
+
+def _findLargest(node):
+    if node is None:
+        return None
+    
+    if node.rightnode is None:
+        return node
+    
+    return _findLargest(node.rightnode)
+
+
+def _deleteNode(B, node):
+    if node is None:
+        return None
+    
+    newNode = _deleteNode(B, _findSmallest(node.rightnode) or _findLargest(node.leftnode))
+
+    if newNode is not None:
+        newNode.leftnode = node.leftnode
+        newNode.rightnode = node.rightnode
+        if newNode.leftnode is not None:
+            newNode.leftnode.parent = newNode
+        if newNode.rightnode is not None:
+            newNode.rightnode.parent = newNode
+        newNode.parent = node.parent
+    
+    if node.parent is None:
+        B.root = newNode
+    elif node.parent.leftnode == node:
+        node.parent.leftnode = newNode
+    else:
+        node.parent.rightnode = newNode
+
+    return node
+
+
+def delete(B, element):
+    node = _deleteNode(B, _findNodeByValue(B.root, element))
+    return node.key if node is not None else None
+
+
+def deleteKey(B, key):
+    node = _deleteNode(B, _findNodeByKey(B.root, key))
+    return node.key if node is not None else None
+
+
 def rotateLeft(t, node):
     # (raíz) A -> B -> C
 
