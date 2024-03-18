@@ -14,14 +14,14 @@ class AVLNode:
 
 def _insertNode(currentNode, newNode):    
     if newNode.key < currentNode.key:
-        if currentNode.leftnode is None:
+        if not currentNode.leftnode:
             currentNode.leftnode = newNode
             newNode.parent = currentNode
             return newNode.key
         else:
             return _insertNode(currentNode.leftnode, newNode)
     elif newNode.key > currentNode.key:
-        if currentNode.rightnode is None:
+        if not currentNode.rightnode:
             currentNode.rightnode = newNode
             newNode.parent = currentNode
             return newNode.key
@@ -41,7 +41,7 @@ def insert(t, element, key):
     newNode.value = element
     newNode.bf = 0
 
-    if t.root is None:
+    if not t.root:
         t.root = newNode
         return key
     
@@ -49,7 +49,7 @@ def insert(t, element, key):
 
 
 def _findNodeByValue(node, value):    
-    if node is None:
+    if not node:
         return None
     
     if node.value == value:
@@ -59,7 +59,7 @@ def _findNodeByValue(node, value):
 
 
 def _findNodeByKey(node, key):    
-    if node is None:
+    if not node:
         return None
     
     if node.key == key:
@@ -72,45 +72,45 @@ def _findNodeByKey(node, key):
 
 def search(B, element):
     node = _findNodeByValue(B.root, element)
-    return node.key if node is not None else None
+    return node.key if node else None
 
 
 def _findSmallest(node):
-    if node is None:
+    if not node:
         return None
     
-    if node.leftnode is None:
+    if not node.leftnode:
         return node
     
     return _findSmallest(node.leftnode)
 
 
 def _findLargest(node):
-    if node is None:
+    if not node:
         return None
     
-    if node.rightnode is None:
+    if not node.rightnode:
         return node
     
     return _findLargest(node.rightnode)
 
 
 def _deleteNode(B, node):
-    if node is None:
+    if not node:
         return None
     
     newNode = _deleteNode(B, _findSmallest(node.rightnode) or _findLargest(node.leftnode))
 
-    if newNode is not None:
+    if newNode:
         newNode.leftnode = node.leftnode
         newNode.rightnode = node.rightnode
-        if newNode.leftnode is not None:
+        if newNode.leftnode:
             newNode.leftnode.parent = newNode
-        if newNode.rightnode is not None:
+        if newNode.rightnode:
             newNode.rightnode.parent = newNode
         newNode.parent = node.parent
     
-    if node.parent is None:
+    if not node.parent:
         B.root = newNode
     elif node.parent.leftnode == node:
         node.parent.leftnode = newNode
@@ -122,22 +122,22 @@ def _deleteNode(B, node):
 
 def delete(B, element):
     node = _deleteNode(B, _findNodeByValue(B.root, element))
-    return node.key if node is not None else None
+    return node.key if node else None
 
 
 def deleteKey(B, key):
     node = _deleteNode(B, _findNodeByKey(B.root, key))
-    return node.key if node is not None else None
+    return node.key if node else None
 
 
 def access(B, key):
     node = _findNodeByKey(B.root, key)
-    return node.value if node is not None else None
+    return node.value if node else None
 
 
 def update(B, element, key):
     node = _findNodeByKey(B.root, key)
-    if node is not None:
+    if node:
         node.value = element
         return key
     else:
