@@ -70,6 +70,11 @@ def _findNodeByKey(node, key):
         return _findNodeByKey(node.rightnode, key)
 
 
+def search(B, element):
+    node = _findNodeByValue(B.root, element)
+    return node.key if node is not None else None
+
+
 def _findSmallest(node):
     if node is None:
         return None
