@@ -130,6 +130,20 @@ def deleteKey(B, key):
     return node.key if node is not None else None
 
 
+def access(B, key):
+    node = _findNodeByKey(B.root, key)
+    return node.value if node is not None else None
+
+
+def update(B, element, key):
+    node = _findNodeByKey(B.root, key)
+    if node is not None:
+        node.value = element
+        return key
+    else:
+        return None
+
+
 def rotateLeft(t, node):
     # (raíz) A -> B -> C
 
