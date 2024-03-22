@@ -46,7 +46,6 @@ def insert(t, element, key):
         return key
     
     result = _insertNode(t.root, newNode)
-    calculateBalance(t)
     reBalance(t)
     return result
 
@@ -125,11 +124,13 @@ def _deleteNode(B, node):
 
 def delete(B, element):
     node = _deleteNode(B, _findNodeByValue(B.root, element))
+    reBalance(B)
     return node.key if node else None
 
 
 def deleteKey(B, key):
     node = _deleteNode(B, _findNodeByKey(B.root, key))
+    reBalance(B)
     return node.key if node else None
 
 
@@ -262,7 +263,9 @@ def reBalance(t):
     if not t:
         return None
     
+    calculateBalance(t)
     reBalanceNode(t, t.root)
+    calculateBalance(t)
     return t
 
 
