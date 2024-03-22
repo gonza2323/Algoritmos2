@@ -45,7 +45,10 @@ def insert(t, element, key):
         t.root = newNode
         return key
     
-    return _insertNode(t.root, newNode);
+    result = _insertNode(t.root, newNode)
+    calculateBalance(t)
+    reBalance(t)
+    return result
 
 
 def _findNodeByValue(node, value):    

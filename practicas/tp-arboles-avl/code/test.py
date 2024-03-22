@@ -11,8 +11,4 @@ t = AVLTree()
 
 for i in range(15):
     insert(t, 0, i)
-    calculateBalance(t)
-    print(toString(t))
-    reBalance(t)
-    calculateBalance(t)
     print(toString(t))
