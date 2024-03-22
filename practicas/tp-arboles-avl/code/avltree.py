@@ -277,10 +277,8 @@ def height(t):
         if node is None:
             return 0
         
-        if node.bf < 0:
-            return nodeHeight(node.rightnode) + 1
-        
-        return nodeHeight(node.leftnode) + 1
+        longest = node.rightnode if node.bf < 0 else node.leftnode
+        return nodeHeight(longest) + 1
     
     return nodeHeight(t.root) - 1 if t.root else 0
 
