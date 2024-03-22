@@ -1,13 +1,18 @@
-from binarytree import *
+from avltree import *
 
 t = AVLTree()
 
-for i in range(0, 10):
-    insert(t, i, i)
+# a = 8
+# h = 3
+# for i in range(h):
+#     for j in range(2**i):
+#         v = (a / 2**i) * (1 + j*2)
+#         insert(t, v, v)
 
-# rotateLeft(t, t.root)
-# rotateLeft(t, t.root)
-# rotateLeft(t, t.root)
-calculateBalance(t)
-
-print("Hello")
+for i in range(15):
+    insert(t, 0, i)
+    calculateBalance(t)
+    print(toString(t))
+    reBalance(t)
+    calculateBalance(t)
+    print(toString(t))

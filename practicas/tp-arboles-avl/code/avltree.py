@@ -233,6 +233,36 @@ def calculateBalance(AVLTree):
     return AVLTree
 
 
+def reBalanceNode(t, node):
+    if not node:
+        return False
+    
+    wasReBalanced = reBalanceNode(t, node.leftnode) or reBalanceNode(t, node.rightnode)
+
+    if wasReBalanced:
+        return True
+    
+    if abs(node.bf) < 2:
+        return False
+
+    if node.bf == 2:
+        rotateRight(t, node)
+    elif node.bf == -2:
+        rotateLeft(t, node)
+    elif abs(node.bf) > 2:
+        print(f'Node con key = {node.key} tiene un balance factor = {node.bg} incorregible!')
+    
+    return True
+
+
+def reBalance(t):
+    if not t:
+        return None
+    
+    reBalanceNode(t, t.root)
+    return t
+
+
 def toString(t):
     if not t:
         return None
