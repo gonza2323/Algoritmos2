@@ -9,9 +9,12 @@ t = AVLTree()
 #         v = (a / 2**i) * (1 + j*2)
 #         insert(t, v, v)
 
+print(height(t))
 for i in range(15):
     insert(t, 0, i)
     print(toString(t))
+    print(height(t))
+
 
 deleteKey(t, 5)
 print(toString(t))
@@ -23,3 +26,4 @@ deleteKey(t, 2)
 print(toString(t))
 insert(t, 0, 12.5)
 print(toString(t))
+print(height(t))

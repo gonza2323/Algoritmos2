@@ -269,6 +269,22 @@ def reBalance(t):
     return t
 
 
+def height(t):
+    if t is None:
+        return None
+    
+    def nodeHeight(node):
+        if node is None:
+            return 0
+        
+        if node.bf < 0:
+            return nodeHeight(node.rightnode) + 1
+        
+        return nodeHeight(node.leftnode) + 1
+    
+    return nodeHeight(t.root) - 1 if t.root else 0
+
+
 def toString(t):
     if not t:
         return None
