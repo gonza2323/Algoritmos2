@@ -184,8 +184,6 @@ def rotateLeft(t, node):
 
 
 def rotateRight(t, node):
-    # C <- B <- A (raiz)
-    
     # Caso especial:
     if node.leftnode.bf < 0:
         rotateLeft(t, node.leftnode)
@@ -206,7 +204,6 @@ def rotateRight(t, node):
     
     # Si B tenía hijo derecho, pasa a ser el
     # hijo izquierdo de A
-    
     if b.rightnode:
         a.leftnode = b.rightnode
         b.rightnode.parent = a
