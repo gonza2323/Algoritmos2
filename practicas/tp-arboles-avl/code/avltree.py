@@ -11,7 +11,7 @@ class AVLNode:
     value = None
     bf = None
 
-
+# --- Ejercicio 4
 def _insertNode(currentNode, newNode):    
     if newNode.key < currentNode.key:
         if not currentNode.leftnode:
@@ -48,6 +48,7 @@ def insert(t, element, key):
     result = _insertNode(t.root, newNode)
     reBalance(t)
     return result
+# --- end
 
 
 def _findNodeByValue(node, value):    
@@ -97,6 +98,7 @@ def _findLargest(node):
     return _findLargest(node.rightnode)
 
 
+# --- Ejercicio 5
 def _deleteNode(B, node):
     if not node:
         return None
@@ -120,6 +122,7 @@ def _deleteNode(B, node):
         node.parent.rightnode = newNode
 
     return node
+# --- end
 
 
 def delete(B, element):
@@ -148,6 +151,7 @@ def update(B, element, key):
         return None
 
 
+# --- Ejercicio 1
 def rotateLeft(t, node):
     # (raíz) A -> B -> C
 
@@ -181,6 +185,7 @@ def rotateLeft(t, node):
     a.parent = b
 
     return b
+# --- end
 
 
 def rotateRight(t, node):
@@ -216,6 +221,7 @@ def rotateRight(t, node):
     return b
     
 
+# --- Ejercicio 2
 def calculateBalance(AVLTree):
     if not AVLTree:
         return None
@@ -231,8 +237,10 @@ def calculateBalance(AVLTree):
     
     calculateNodeBalance(AVLTree.root)
     return AVLTree
+# --- end
 
 
+# --- Ejercicio 3
 def reBalanceNode(t, node):
     if not node:
         return False
@@ -263,8 +271,10 @@ def reBalance(t):
     reBalanceNode(t, t.root)
     calculateBalance(t)
     return t
+# --- end
 
 
+# --- Ejercicio opcional1
 def height(t):
     if t is None:
         return None
@@ -277,6 +287,7 @@ def height(t):
         return nodeHeight(longest) + 1
     
     return nodeHeight(t.root) - 1 if t.root else 0
+# --- end
 
 
 def toString(t):
