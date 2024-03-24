@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
-_minted-main/
+_minted*/
 snippets/
 *.aux
 *.dvi
