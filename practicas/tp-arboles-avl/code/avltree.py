@@ -214,21 +214,20 @@ def rotateRight(t, node):
     a.parent = b
 
     return b
-
-
-def calculateNodeBalance(node):
-    if not node:
-        return 0
-    
-    leftHeight = calculateNodeBalance(node.leftnode)
-    rightHeight = calculateNodeBalance(node.rightnode)
-    node.bf = leftHeight - rightHeight
-    return max(leftHeight, rightHeight) + 1
     
 
 def calculateBalance(AVLTree):
     if not AVLTree:
         return None
+    
+    def calculateNodeBalance(node):
+        if not node:
+            return 0
+        
+        leftHeight = calculateNodeBalance(node.leftnode)
+        rightHeight = calculateNodeBalance(node.rightnode)
+        node.bf = leftHeight - rightHeight
+        return max(leftHeight, rightHeight) + 1
     
     calculateNodeBalance(AVLTree.root)
     return AVLTree
