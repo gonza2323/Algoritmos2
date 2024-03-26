@@ -160,12 +160,37 @@ Implementar la operación \textbf{delete()} en  el módulo \textbf{avltree.py} g
 \item Responder V o F y justificar su respuesta:
 \begin{enumerate}
 \item \underline{ F } En un AVL el penúltimo nivel tiene que estar completo
+
+El siguiente contra ejemplo demuestra que la proposición es falsa.
+
+\includegraphics[scale=0.5]{./img/ej6a-arbol.pdf}
+
+Como puede verse, es un AVL ya que el balance factor de cada nodo es -1, 0 o 1, pero su penúltimo nivel está incompleto.
+
 \item \underline{ V } Un AVL donde todos los nodos tengan factor de balance 0 es completo
+
+Un árbol es completo si todos los nodos de todos sus niveles, excepto el último, tienen 2 hijos. Como todos los nodos del árbol tienen balance factor 0, entonces cada uno debe tener 0 hijos, o tener 2 hijos que formen subárboles de la misma altura.
+
+Sea $h$ la altura del árbol, analicemos cada nivel $l$. En el primer nivel $(l=0)$, si $h=l=0$, entonces la raíz deberá tener necesariamente 0 hijos. En tal caso, se tiene un árbol completo, ya que los nodos de su último (y único) nivel tienen 0 hijos. En cambio, si $l\neq h$, entonces necesariamente deberá tener algún hijo. Pero como ya vimos, solo puede tener 0 o 2 hijos, por lo que debe tener 2. Además, los subárboles que formen sus hijos deberán tener ambos la misma altura $h-l-1$.
+
+Ahora analizamos el siguiente nivel $(l=1)$. Se tienen dos posibles casos.
+\begin{enumerate}
+    \item $(l=h)$ En tal caso, estamos en el último nivel, y por lo tanto cada nodo del mismo debe tener 0 hijos.
+    \item $(l<h)$ En este caso, algún nodo debe tener 2 hijos. Pero como dijimos que cada subárbol de este nivel debe tener la misma altura $(h-l)$, entonces \em{todos} los nodos de este nivel tienen 2 hijos. Como cada nodo tiene balance factor 0, entonces sus hijos deben también formar subárboles de la misma altura $h-l-1$.
+\end{enumerate}
+
+Y así para cada $l = 1, 2, \dots, h$ Entonces, puede verse que para todos los niveles, excepto el último, cada nodo tiene 2 hijos, entonces se tiene un árbol completo.
+
 \item \underline{ V } En la inserción en un AVL, si al actualizarle el factor de balance al padre del nodo insertado éste no se desbalanceó, entonces no hay que seguir verificando hacia arriba porque no hay cambios en los factores de balance.
+
+Si el balance factor del padre del nodo insertado no se desbalanceó, esto quiere decir que el padre tenía previamente un solo hijo y, por lo tanto, un balance factor de -1 o 1, que pasó luego a 0. Si ya tenía 1 hijo, entonces al agregarle otro a su lado, no cambia la altura del subárbol formado a partir del nodo padre. Por lo tanto, no cambia la altura de ningún subárbol formado a partir de sus nodos superiores, y no es necesario actualizar sus balance factors.
+
 \item \underline{ V } En todo AVL existe al menos un nodo con factor de balance 0.
+
+Todos los nodos terminales tienen balance factor 0.
+
 \end{enumerate}
 \end{enumerate}
-\subsubsection*{Solución}
 
 
 \subsection*{Ejercicio 7}
@@ -173,11 +198,13 @@ Sean $A$ y $B$ dos AVL de $m$ y $n$ nodos respectivamente y sea $x$ un key cualq
 \subsubsection*{Solución}
 
 
+
 \subsection*{Ejercicio 8}
 Considere una rama truncada en un AVL como un camino simple desde la raíz hacia un nodo que tenga una referencia None (que le falte algún hijo). Demuestre que la mínima longitud (cantidad de aristas) que puede tener una rama truncada  en un AVL de altura $h$ es $h/2$ (tomando la parte entera por abajo). 
 
 Cualquier camino desde la raíz hasta un nodo que no esté completo puede ser una rama truncada según la definición del ejercicio. Dicho nodo puede no ser necesariamente un nodo hoja.
 \subsubsection*{Solución}
+
 
 
 \section*{Parte 3}
