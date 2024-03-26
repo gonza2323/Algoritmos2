@@ -200,11 +200,19 @@ Sean $A$ y $B$ dos AVL de $m$ y $n$ nodos respectivamente y sea $x$ un key cualq
 
 
 \subsection*{Ejercicio 8}
-Considere una rama truncada en un AVL como un camino simple desde la raíz hacia un nodo que tenga una referencia None (que le falte algún hijo). Demuestre que la mínima longitud (cantidad de aristas) que puede tener una rama truncada  en un AVL de altura $h$ es $h/2$ (tomando la parte entera por abajo). 
+Considere una rama truncada en un AVL como un camino simple desde la raíz hacia un nodo que tenga una referencia None (que le falte algún hijo). Demuestre que la mínima longitud (cantidad de aristas) que puede tener una rama truncada en un AVL de altura $h$ es $h/2$ (tomando la parte entera por abajo).
 
 Cualquier camino desde la raíz hasta un nodo que no esté completo puede ser una rama truncada según la definición del ejercicio. Dicho nodo puede no ser necesariamente un nodo hoja.
 \subsubsection*{Solución}
+Encontrar la longitud mínima que puede tener una rama truncada en un AVL de altura $h$ es equivalente a encontrar la mínima cantidad de niveles completos del mismo. Esto es cierto ya que si el siguiente nivel está completo, entonces todos los nodos del nivel actual tienen 2 hijos (entonces ninguno es el final de una rama truncada), y si el nivel actual no es completo, entonces existe uno con menos de 2 hijos en el nivel anterior (entonces existe una rama truncada de menor longitud al nivel actual).
 
+Podemos encontrar el nivel mínimo completo de un árbol siguiendo los recorridos de menor longitud posible. Si el árbol es de altura $h$, entonces existe un recorrido desde la raíz hasta algún nodo del último nivel, que contiene $h$ aristas y $h+1$ nodos. Para mantener el balance de la raíz, debe existir otro recorrido, que pase por el otro hijo de la raíz, y que tenga altura $h$ o $h-1$. Como nos interesa encontrar el recorrido de menor longitud posible, nos concentramos en el de longitud $h-1$.
+
+De igual forma, desde la perspectiva del hijo de la raíz contenido en este segundo recorrido (en el nivel $n=1$), tal recorrido tiene un altura $h-2$ (comenzando desde el nivel 1), por lo que también debe ser el comienzo de otro recorrido de $h-3$ aristas, que pase por su otro hijo, para mantener su propio balance. En general, en este mínimo recorrido, el nodo del nivel $l$ forma parte de un recorrido que comienza en él, con altura $h-2l$ a partir de si mismo, y debe a su vez ser el comienzo de un recorrido de altura $h-2l-1$.
+
+Nótese que ambos números pueden ser cero o negativos. Cuando el primero sea cero, significa que el nodo de ese nivel es el final del recorrido, y no existe recorrido menor, entonces estamos en el mínimo nivel completo, y el nodo tiene hijos. Intentar armar un recorrido menor a partir de él da una distancia negativa (el segundo número). Si, en cambio, el segundo número es 0, y el primero positivo, quiere decir que para mantener al nodo balanceado, uno de sus hijos puede no existir (pero no ninguno), entonces hemos encontrado también el mínimo nivel completo y, por lo tanto, la longitud mínima de una rama truncada.
+
+Finalmente, tenemos que $h-2l=0$ si $l=\frac{h}{2}$, y que $h-2l-1=0$ si $l=\frac{h-1}{2}$. Si $h$ es par, solo la primera ecuación tiene solución entera, por lo que utilizamos la fórmula correspondiente. De la misma forma, si $h$ es impar, solo la segunda tiene solución entera. La fórmula $l = \lfloor h/2 \rfloor$ logra que alguno de los números sea 0, que es lo que se quería probar.
 
 
 \section*{Parte 3}
@@ -215,7 +223,6 @@ Cualquier camino desde la raíz hasta un nodo que no esté completo puede ser un
     \inputminted{python3}{./code/snippets/ejercicioopcional1.py}
     
     \item Considere una modificación en el módulo \textbf{avltree.py} donde a cada nodo se le ha agregado el campo \textbf{count} que almacena el número de nodos que hay en el subárbol en el que él es raíz. Programe un algoritmo $O(\log n)$ que determine la cantidad de nodos en el árbol cuyo valor del key se encuentra en un intervalo $[a, b]$ dado como parámetro. Explique brevemente por qué el algoritmo programado por usted tiene dicho orden.
-    \subsubsection*{Solución}
 \end{enumerate}
 
 
