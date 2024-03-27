@@ -17,6 +17,7 @@
 \usepackage{courier}
 \usepackage{xcolor}
 \usepackage{minted}
+\usepackage{enumitem}
 
 
 % Opciones para entornos de código fuente
@@ -131,24 +132,25 @@ Implementar una función en el modulo avltree.py de acuerdo a  las siguientes es
 \setlength{\fboxsep}{0pt}
 \inputminted{python3}{./code/snippets/ejercicio3.py}
 
-
+\pagebreak
 \subsection*{Ejercicio 4}
-Implementar la operación \textbf{insert()} en  el módulo \textbf{avltree.py} garantizando que el árbol  binario resultante sea un árbol AVL. 
+Implementar la operación \textbf{insert()} en  el módulo \textbf{avltree.py} garantizando que el árbol  binario resultante sea un árbol AVL.
 \subsubsection*{Solución}
 \inputminted{python3}{./code/snippets/ejercicio4.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 5}
 Implementar la operación \textbf{delete()} en  el módulo \textbf{avltree.py} garantizando que el árbol  binario resultante sea un árbol AVL.
 \subsubsection*{Solución}
 \inputminted{python3}{./code/snippets/ejercicio5.py}
 
 
+\pagebreak
 \section*{Parte 2}
 \subsection*{Ejercicio 6}
-\begin{enumerate}
-\item Responder V o F y justificar su respuesta:
-\begin{enumerate}
+Responder V o F y justificar su respuesta:
+\begin{enumerate}[label=\alph*)]
 \item \underline{ F } En un AVL el penúltimo nivel tiene que estar completo
 
 El siguiente contraejemplo demuestra que la proposición es falsa.
@@ -166,7 +168,7 @@ Un árbol es completo si todos los nodos de todos sus niveles, excepto el últim
 Sea $h$ la altura del árbol, analicemos cada nivel $l$. En el primer nivel $(l=0)$, si $h=l=0$, entonces la raíz deberá tener necesariamente 0 hijos. En tal caso, se tiene un árbol completo, ya que los nodos de su último (y único) nivel tienen 0 hijos. En cambio, si $l\neq h$, entonces necesariamente deberá tener algún hijo. Pero como ya vimos, solo puede tener 0 o 2 hijos, por lo que debe tener 2. Además, los subárboles que formen sus hijos deberán tener ambos la misma altura $h-l-1$.
 
 Ahora analizamos el siguiente nivel $(l=1)$. Se tienen dos posibles casos.
-\begin{enumerate}
+\begin{enumerate}[label=\roman{*})]
     \item $(l=h)$ En tal caso, estamos en el último nivel, y por lo tanto cada nodo del mismo debe tener 0 hijos.
     \item $(l<h)$ En este caso, algún nodo debe tener 2 hijos. Pero como dijimos que cada subárbol de este nivel debe tener la misma altura $(h-l)$, entonces \textit{todos} los nodos de este nivel tienen 2 hijos. Como cada nodo tiene balance factor 0, entonces sus hijos deben también formar subárboles de la misma altura $h-l-1$.
 \end{enumerate}
@@ -190,7 +192,6 @@ Al insertar un nodo a la izquierda del árbol, su padre no se desbalanceó (es -
 Todas las hojas tienen balance factor 0, por lo que es verdadero. Si no se toman en cuenta las mismas, entonces la proposición es falsa. Basta tomar un árbol que solo tiene dos nodos: la raíz y un solo hijo. En este caso el hijo es un nodo hoja con balance factor 0, y la raíz, que es el único nodo interior, tiene balance factor 1, entonces el árbol no tiene ningún nodo interior con balance factor 0.
 
 \end{enumerate}
-\end{enumerate}
 
 
 \subsection*{Ejercicio 7}
@@ -204,6 +205,7 @@ Se calculan las alturas $h_A$ y $h_B$ de ambos árboles (operaciones de orden $O
 \end{enumerate}
 
 
+\pagebreak
 \subsection*{Ejercicio 8}
 Considere una rama truncada en un AVL como un camino simple desde la raíz hacia un nodo que tenga una referencia None (que le falte algún hijo). Demuestre que la mínima longitud (cantidad de aristas) que puede tener una rama truncada en un AVL de altura $h$ es $h/2$ (tomando la parte entera por abajo).
 
@@ -220,6 +222,7 @@ Nótese que ambos números pueden ser cero o negativos. Cuando el primero sea ce
 Finalmente, tenemos que $h-2l=0$ si $l=\frac{h}{2}$, y que $h-2l-1=0$ si $l=\frac{h-1}{2}$. Si $h$ es par, solo la primera ecuación tiene solución entera, por lo que utilizamos la fórmula correspondiente. De la misma forma, si $h$ es impar, solo la segunda tiene solución entera. La fórmula $l = \lfloor h/2 \rfloor$ logra que alguno de los dos números sea 0, y por lo tanto indica la altura mínima de una rama truncada, que es lo que se quería probar.
 
 
+\pagebreak
 \section*{Parte 3}
 \subsection*{Ejercicios Opcionales}
 \begin{enumerate}
