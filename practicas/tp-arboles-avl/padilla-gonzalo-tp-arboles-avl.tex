@@ -119,7 +119,7 @@ Implementar una función recursiva que calcule el elemento balanceFactor de cada
 
 
 \subsection*{Ejercicio 3}
-Implementar una funcion en el modulo avltree.py de acuerdo a  las siguientes especifcaciones:
+Implementar una función en el modulo avltree.py de acuerdo a  las siguientes especificaciones:
 
 \begin{lstlisting}
 %*\textbf{reBalance(AVLTree)}*)
@@ -151,11 +151,13 @@ Implementar la operación \textbf{delete()} en  el módulo \textbf{avltree.py} g
 \begin{enumerate}
 \item \underline{ F } En un AVL el penúltimo nivel tiene que estar completo
 
-El siguiente contra ejemplo demuestra que la proposición es falsa.
-
-\includegraphics[scale=0.5]{./img/ej6a-arbol.pdf}
+El siguiente contraejemplo demuestra que la proposición es falsa.
+\begin{center}
+    \includegraphics[scale=0.7]{./img/ej6a-arbol.pdf}
+\end{center}
 
 Como puede verse, es un AVL ya que el balance factor de cada nodo es -1, 0 o 1, pero su penúltimo nivel está incompleto.
+
 
 \item \underline{ V } Un AVL donde todos los nodos tengan factor de balance 0 es completo
 
@@ -166,14 +168,22 @@ Sea $h$ la altura del árbol, analicemos cada nivel $l$. En el primer nivel $(l=
 Ahora analizamos el siguiente nivel $(l=1)$. Se tienen dos posibles casos.
 \begin{enumerate}
     \item $(l=h)$ En tal caso, estamos en el último nivel, y por lo tanto cada nodo del mismo debe tener 0 hijos.
-    \item $(l<h)$ En este caso, algún nodo debe tener 2 hijos. Pero como dijimos que cada subárbol de este nivel debe tener la misma altura $(h-l)$, entonces \em{todos} los nodos de este nivel tienen 2 hijos. Como cada nodo tiene balance factor 0, entonces sus hijos deben también formar subárboles de la misma altura $h-l-1$.
+    \item $(l<h)$ En este caso, algún nodo debe tener 2 hijos. Pero como dijimos que cada subárbol de este nivel debe tener la misma altura $(h-l)$, entonces \textit{todos} los nodos de este nivel tienen 2 hijos. Como cada nodo tiene balance factor 0, entonces sus hijos deben también formar subárboles de la misma altura $h-l-1$.
 \end{enumerate}
 
 Y así para cada $l = 1, 2, \dots, h$ Entonces, puede verse que para todos los niveles, excepto el último, cada nodo tiene 2 hijos, entonces se tiene un árbol completo.
 
-\item \underline{ V } En la inserción en un AVL, si al actualizarle el factor de balance al padre del nodo insertado éste no se desbalanceó, entonces no hay que seguir verificando hacia arriba porque no hay cambios en los factores de balance.
 
-Si el balance factor del padre del nodo insertado no se desbalanceó, esto quiere decir que el padre tenía previamente un solo hijo y, por lo tanto, un balance factor de -1 o 1, que pasó luego a 0. Si ya tenía 1 hijo, entonces al agregarle otro a su lado, no cambia la altura del subárbol formado a partir del nodo padre. Por lo tanto, no cambia la altura de ningún subárbol formado a partir de sus nodos superiores, y no es necesario actualizar sus balance factors.
+\item \underline{ F } En la inserción en un AVL, si al actualizarle el factor de balance al padre del nodo insertado éste no se desbalanceó, entonces no hay que seguir verificando hacia arriba porque no hay cambios en los factores de balance.
+
+Se demuestra mediante el siguiente contraejemplo
+
+\begin{center}
+    \includegraphics[scale=0.4]{./img/ej6c.pdf}
+\end{center}
+
+Al insertar un nodo a la izquierda del árbol, su padre no se desbalanceó (es -1, 0 o 1). Aún así, cambiaron los balance factor de todos los nodos superiores.
+
 
 \item \underline{ V } En todo AVL existe al menos un nodo con factor de balance 0.
 
@@ -186,7 +196,12 @@ Todas las hojas tienen balance factor 0, por lo que es verdadero. Si no se toman
 \subsection*{Ejercicio 7}
 Sean $A$ y $B$ dos AVL de $m$ y $n$ nodos respectivamente y sea $x$ un key cualquiera de forma tal que para todo key $a\in A$ y para todo key $b\in B$ se cumple que $a < x < b$. Plantear un algoritmo $O(\log n + \log m)$ que devuelva un AVL que contenga los key de $A$, el key $x$ y los key de $B$.
 \subsubsection*{Solución}
-
+Se calculan las alturas $h_A$ y $h_B$ de ambos árboles (operaciones de orden $O(\log m)$ y $O(\log n)$, respectivamente). Si $|h_A-h_B|<2$ entonces simplemente basta conectar el árbol $A$ como hijo izquierdo de $x$, y a $B$ como su hijo derecho, y se tendrá un árbol AVL con $x$ como su raíz. En cambio, si $|h_A-h_B|\geq 2$, entonces insertaremos el subárbol de menor altura en el de mayor altura de la siguiente manera:
+\begin{enumerate}
+    \item Recorremos el árbol de mayor altura por su derecha si se trata de $A$, o por su izquierda si es $B$, hasta haber recorrido una distancia igual a la diferencia entre la altura del árbol más alto y la altura del más corto. Es decir, una vez que nos detenemos, estaremos en la raíz de un subárbol con altura igual a la del árbol más corto.
+    \item A tal nodo, lo reemplazamos por $x$, colocando al mismo como hijo de $x$. Si estamos en $A$, como hijo izquierdo, si no, como hijo derecho. Esto preserva el orden de todas las llaves, pero ahora $x$ es un nodo muy desbalanceado.
+    \item Finalmente, colocamos al árbol más corto como el hijo restante de $x$. Esto balancea al árbol, ya que debajo de $x$, el subárbol que ahora es hermano del árbol más corto, tenía una altura igual a él, ya que recorrimos el árbol originalmente hasta esa distancia. También se preserva el orden de las keys.
+\end{enumerate}
 
 
 \subsection*{Ejercicio 8}
