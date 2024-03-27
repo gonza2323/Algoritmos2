@@ -19,10 +19,7 @@
 \usepackage{minted}
 
 
-% \usemintedstyle{monokai}
-\definecolor{background}{gray}{0.2}
-
-
+% Opciones para entornos de código fuente
 \setminted[python3]{
     style=default,
     % bgcolor=background,
@@ -37,6 +34,7 @@
 }
 
 
+% Opciones para entornos de pseudocódigo
 \lstset{
     language=Python,                    % the language of the code
     basicstyle=\footnotesize\ttfamily,  % the size of the fonts that are used for the code
@@ -55,7 +53,7 @@
 }
 
 
-% header & footer settings
+% Encabezado y pie de página
 \fancyhf{}
 \lhead{\includegraphics[height=32pt]{img/logo-uncuyo-fing.pdf}}
 \rhead{ Licenciatura en Ciencias de la Computación \\
@@ -65,16 +63,8 @@
 \pagestyle{fancy}
 
 
-\title{Trabajo Práctico Nº 1}
-\author{Gonzalo Padilla}
-\date{Marzo 2024}
-
-
 \begin{document}
-\maketitle
-\pagestyle{fancy}
-
-
+\input{titulo.tex}
 \section*{Parte 1}
 
 \textbf{Importante:} Los ejercicios de esta primera parte tienen como objetivo codificar las diferentes funciones básicas necesarias para implementar un árbol AVL.
