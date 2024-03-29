@@ -11,42 +11,37 @@
             includefoot,
             ]{geometry}
 \usepackage{graphicx}
-\usepackage{listings}
-\usepackage{fancyhdr}
 \usepackage{parskip}
-\usepackage{courier}
+\usepackage{fancyhdr}
 \usepackage{xcolor}
-\usepackage{minted}
+\usepackage[most, minted]{tcolorbox}
 \usepackage{enumitem}
 
 
 % Opciones para entornos de código fuente
-\setminted[python3]{
-    style=default,
-    % bgcolor=background,
-    breaklines,
-    linenos=true,
-    firstnumber=0,
-    fontsize=\footnotesize,
-    frame=single,
-    samepage=true,
-    % xleftmargin=20pt,
-    % xrightmargin=20pt,
+\definecolor{bg}{RGB}{29, 35, 49}
+\definecolor{framecolor}{RGB}{125, 138, 151}
+
+\newtcbinputlisting{\inputcode}[3][]{
+    listing only,
+    listing engine=minted,
+    listing file={#3},
+    minted language={#2},
+    minted style=lightbulb,
+    breakable,
+    colback=bg,
+    colframe=framecolor,
+    #1
 }
 
 
-% Opciones para entornos de pseudocódigo
 \lstset{
-    language=Python,                    % the language of the code
-    basicstyle=\footnotesize\ttfamily,  % the size of the fonts that are used for the code
     breakatwhitespace=true,             % sets if automatic breaks should only happen at whitespace
     breaklines=true,                    % sets automatic line breaking
     keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-    escapeinside={\%*}{*)},             % if you want to add LaTeX within your code
-    extendedchars=true,                 % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-    otherkeywords={None,Entrada,Salida},% if you want to add more keywords to the set
-    deletekeywords={del},               % if you want to delete keywords from the given language
-    literate=   {á}{{\'a}}1             % fixes utf-8 errors in lstlisting environments
+    columns=flexible,
+    escapechar=|,
+    literate=   {á}{{\'a}}1             % corrige errores de utf-8
                 {é}{{\'e}}1
                 {í}{{\'i}}1
                 {ó}{{\'o}}1
@@ -59,7 +54,7 @@
 \lhead{\includegraphics[height=32pt]{img/logo-uncuyo-fing.pdf}}
 \rhead{ Licenciatura en Ciencias de la Computación \\
         Algoritmos y Estructuras de Datos II \\
-        Árboles Balanceados: AVL}
+        TP N\textsuperscript{o} 2: Árboles Balanceados AVL}
 \rfoot{\thepage}
 \pagestyle{fancy}
 
@@ -73,16 +68,16 @@
 A partir de estructuras definidas como:
 
 \begin{lstlisting}
-class AVLTree:
-    root = None
+|\textbf{class}| AVLTree:
+    root = |\textbf{None}|
 
-class AVLNode:
-    parent = None
-    leftnode = None
-    rightnode = None
-    key = None
-    value = None
-    bf = None
+|\textbf{class}| AVLNode:
+    parent = |\textbf{None}|
+    leftnode = |\textbf{None}|
+    rightnode = |\textbf{None}|
+    key = |\textbf{None}|
+    value = |\textbf{None}|
+    bf = |\textbf{None}|
 \end{lstlisting}
 
 Copiar y adaptar todas las operaciones del \textbf{binarytree.py} (i.e. insert(), delete(), search(), etc.) al nuevo módulo \textbf{avltree.py}. Notar que estos luego deberán ser implementados para cumplir que la propiedad de un árbol AVL
@@ -93,57 +88,60 @@ Ver ejercicios 4 y 5.
 \subsection*{Ejercicio 1}
 Crear un modulo de nombre \textbf{avltree.py}. Implementar las siguientes funciones:
 \begin{lstlisting}
-%*\textbf{rotateLeft(Tree,avlnode)}*)
-    %*\textbf{Descripción}*): Implementa la operación rotación a la izquierda
-    Entrada: Un Tree junto a un AVLnode sobre el cual se va a operar la rotación a la izquierda
-    Salida: retorna la nueva raíz
+|\textbf{rotateLeft(Tree, avlnode)}|
+    |\textbf{Descripción}|: Implementa la operación rotación a la izquierda
+    |\textbf{Entrada}|: Un Tree junto a un AVLnode sobre el cual se va a operar la rotación a la izquierda
+    |\textbf{Salida}|: retorna la nueva raíz
 
-%*\textbf{rotateRight(Tree,avlnode)}*)
-    %*\textbf{Descripción}*): Implementa la operación rotación a la derecha
-    Entrada: Un Tree junto a un AVLnode sobre el cual se va a operar la rotación a la derecha
-    Salida: retorna la nueva raíz
+|\textbf{rotateRight(Tree, avlnode)}|
+    |\textbf{Descripción}|: Implementa la operación rotación a la derecha
+    |\textbf{Entrada}|: Un Tree junto a un AVLnode sobre el cual se va a operar la rotación a la derecha
+    |\textbf{Salida}|: retorna la nueva raíz
 \end{lstlisting}
+\pagebreak
 \subsubsection*{Solución}
-\inputminted{python3}{./code/snippets/ejercicio1.py}
+\inputcode{python3}{./code/snippets/ejercicio1.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 2}
 Implementar una función recursiva que calcule el elemento balanceFactor de cada subárbol siguiendo la siguiente especificación:
 \begin{lstlisting}
-%*\textbf{calculateBalance(AVLTree)}*)
-    %*\textbf{Descripción}*): Calcula el factor de balanceo de un árbol binario de búsqueda.
-    Entrada: El árbol AVL sobre el cual se quiere operar.
-    Salida: El árbol AVL con el valor de balanceFactor para cada subárbol
+|\textbf{calculateBalance(AVLTree)}|
+    |\textbf{Descripción}|: Calcula el factor de balanceo de un árbol binario de búsqueda.
+    |\textbf{Entrada}|: El árbol AVL sobre el cual se quiere operar.
+    |\textbf{Salida}|: El árbol AVL con el valor de balanceFactor para cada subárbol
 \end{lstlisting}
 \subsubsection*{Solución}
-\inputminted{python3}{./code/snippets/ejercicio2.py}
+\inputcode{python3}{./code/snippets/ejercicio2.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 3}
 Implementar una función en el modulo avltree.py de acuerdo a  las siguientes especificaciones:
-
 \begin{lstlisting}
-%*\textbf{reBalance(AVLTree)}*)
-    %*\textbf{Descripción}*): balancea un árbol binario de búsqueda. Para esto se deberá primero calcular el balanceFactor del árbol y luego en función de esto aplicar la estrategia de rotación que corresponda.
-    Entrada: El árbol binario de tipo AVL  sobre el cual se quiere operar.
-    Salida: Un árbol binario de búsqueda balanceado. Es decir luego de esta operación se cumple que la altura (h) de su subárbol derecho e izquierdo difieren a lo sumo en una unidad.
+|\textbf{reBalance(AVLTree)}|
+    |\textbf{Descripción}|: balancea un árbol binario de búsqueda. Para esto se deberá primero calcular el balanceFactor del árbol y luego en función de esto aplicar la estrategia de rotación que corresponda.
+    |\textbf{Entrada}|: El árbol binario de tipo AVL  sobre el cual se quiere operar.
+    |\textbf{Salida}|: Un árbol binario de búsqueda balanceado. Es decir luego de esta operación se cumple que la altura (h) de su subárbol derecho e izquierdo difieren a lo sumo en una unidad.
 \end{lstlisting}
 \subsubsection*{Solución}
 \setlength{\fboxsep}{0pt}
-\inputminted{python3}{./code/snippets/ejercicio3.py}
+\inputcode{python3}{./code/snippets/ejercicio3.py}
+
 
 \pagebreak
 \subsection*{Ejercicio 4}
 Implementar la operación \textbf{insert()} en  el módulo \textbf{avltree.py} garantizando que el árbol  binario resultante sea un árbol AVL.
 \subsubsection*{Solución}
-\inputminted{python3}{./code/snippets/ejercicio4.py}
+\inputcode{python3}{./code/snippets/ejercicio4.py}
 
 
 \pagebreak
 \subsection*{Ejercicio 5}
 Implementar la operación \textbf{delete()} en  el módulo \textbf{avltree.py} garantizando que el árbol  binario resultante sea un árbol AVL.
 \subsubsection*{Solución}
-\inputminted{python3}{./code/snippets/ejercicio5.py}
+\inputcode{python3}{./code/snippets/ejercicio5.py}
 
 
 \pagebreak
@@ -228,7 +226,7 @@ Finalmente, tenemos que $h-2l=0$ si $l=\frac{h}{2}$, y que $h-2l-1=0$ si $l=\fra
 \begin{enumerate}
     \item Si n es la cantidad de nodos en un árbol AVL, implemente la operación \textbf{height()} en el módulo \textbf{avltree.py} que determine su altura en $O(\log n)$. Justifique el por qué de dicho orden.
     \subsubsection*{Solución}
-    \inputminted{python3}{./code/snippets/ejercicioopcional1.py}
+    \inputcode{python3}{./code/snippets/ejercicioopcional1.py}
     
     \item Considere una modificación en el módulo \textbf{avltree.py} donde a cada nodo se le ha agregado el campo \textbf{count} que almacena el número de nodos que hay en el subárbol en el que él es raíz. Programe un algoritmo $O(\log n)$ que determine la cantidad de nodos en el árbol cuyo valor del key se encuentra en un intervalo $[a, b]$ dado como parámetro. Explique brevemente por qué el algoritmo programado por usted tiene dicho orden.
 \end{enumerate}
