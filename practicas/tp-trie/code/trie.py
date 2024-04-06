@@ -10,6 +10,7 @@ class TrieNode:
     isEndOfWord = False
 
 
+# --- Ejercicio 1a
 def insert(T, element):
     if not element or not T:
         return None
@@ -34,8 +35,10 @@ def insert(T, element):
         node = nextNode
 
     return None
+# --- end
 
 
+# --- Ejercicio 1b
 def search(T, element):
     if not element:
         return True
@@ -57,6 +60,7 @@ def search(T, element):
         node = nextNode
 
     return True
+# --- end
 
 
 def getWords(T):
