@@ -37,7 +37,26 @@ def insert(T, element):
 
 
 def search(T, element):
-    return None
+    if not element:
+        return True
+    
+    if not T or not T.root:
+        return False
+    
+    node = T.root
+    element = element.lower()
+    for i, char in enumerate(element):
+        indexChild = ord(char) - 97
+        nextNode = node.children[indexChild]
+        
+        if (not nextNode or
+            nextNode.key != char or
+            (i == len(element) - 1 and not nextNode.isEndOfWord)):
+           return False
+
+        node = nextNode
+
+    return True
 
 
 def getWords(T):
