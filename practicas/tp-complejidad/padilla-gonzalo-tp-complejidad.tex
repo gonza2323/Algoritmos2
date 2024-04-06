@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,
+            top=2cm,
+            bottom=2cm,
+            left=3cm,
+            right=3cm,
+            headheight=36pt,
+            nomarginpar,
+            includehead,
+            includefoot,
+            ]{geometry}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[many, minted, listings]{tcolorbox}
+
+
+% Opciones para entornos de código fuente
+\definecolor{bg}{RGB}{29, 35, 49}
+\definecolor{framecolor}{RGB}{125, 138, 151}
+
+\newtcbinputlisting{\inputcode}[3][]{
+    listing only,
+    listing engine=minted,
+    listing file={#3},
+    minted language={#2},
+    minted style=lightbulb,
+    breakable,
+    colback=bg,
+    colframe=framecolor,
+    #1
+}
+
+
+% Opciones para entornos de pseudocódigo
+\lstset{
+    breakatwhitespace=true,             % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                    % sets automatic line breaking
+    keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+    columns=flexible,
+    escapechar=|,
+    literate=   {á}{{\'a}}1             % corrige errores de utf-8
+                {é}{{\'e}}1
+                {í}{{\'i}}1
+                {ó}{{\'o}}1
+                {ú}{{\'u}}1,
+}
+
+
+% Encabezado y pie de página
+\fancyhf{}
+\lhead{\includegraphics[height=32pt]{img/logo-uncuyo-fing.pdf}}
+\rhead{ Licenciatura en Ciencias de la Computación \\
+        Algoritmos y Estructuras de Datos II \\
+        TP N\textsuperscript{o} 1: Análisis de Complejidad}
+\rfoot{\thepage}
+\pagestyle{fancy}
+
+
+\begin{document}
+\input{titulo.tex}
+
+
+\subsection*{Ejercicio 1}
+Demuestre que $6n^3 \neq O(n^2)$.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 2}
+¿Cómo sería un array de números (mínimo 10 elementos) para el mejor caso de la estrategia de ordenación Quicksort(n)?
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 3}
+Cuál es el tiempo de ejecución de la estrategia Quicksort(A), Insertion-Sort(A) y Merge-Sort(A) cuando todos los elementos del array A tienen el mismo valor?
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 4}
+Implementar un algoritmo que ordene una lista de elementos donde siempre el elemento del medio de la lista contiene antes que él en la lista la mitad de los elementos menores que él. Explique la estrategia de ordenación utilizada.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 5}
+Implementar un algoritmo Contiene-Suma(A,n) que recibe una lista de enteros A y un entero n y devuelve True si existen en A un par de elementos que sumados den n. Analice el costo computacional.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 6}
+Investigar otro algoritmo de ordenamiento como BucketSort, HeapSort o RadixSort, brindando un ejemplo que explique su funcionamiento en un caso promedio. Mencionar su orden y explicar sus casos promedio, mejor y peor.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 7}
+A partir de las siguientes ecuaciones de recurrencia, encontrar la complejidad expresada en $\Theta (n)$ y ordenarlas de forma ascendente respecto a la velocidad de crecimiento. Asumiendo que T(n) es constante para $n \leq 2$. Resolver 3 de ellas con el método maestro completo: $T(n) = a T(n/b) + f(n)$ y otros 3 con el método maestro simplificado: $T(n) = a T(n/b) + n^c$
+\begin{enumerate}[label=\alph*.]
+    \item $T(n) = 2T(n/2) + n^4$
+    \item $T(n) = 2T(7n/10) + n$
+    \item $T(n) = 16T(n/4) + n^2$
+    \item $T(n) = 7T(n/3) + n^2$
+    \item $T(n) = 7T(n/2) + n^2$
+    \item $T(n) = 2T(n/4) + \sqrt{n}$
+\end{enumerate}
+\subsubsection*{Solución}
+
+
+\end{document}
