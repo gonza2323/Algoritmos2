@@ -2,27 +2,37 @@ from trie import *
 
 t = Trie()
 
-words = [
+wordsInTrie = [
     "Ho",
     "Hola",
     "Holanda",
     "Gonzalo",
     "Gonza",
-    "G",
+    "Gonzi",
     "Buenas",
     "Mama",
     "Mamadera",
     "Ma",
 ]
 
-for word in words:
+wordsNotInTrie = [
+    "H",
+    "Gonz",
+    "Gon",
+    "Mamaderas",
+    "Verdura",
+]
+
+for word in wordsInTrie:
     insert(t, word)
 
+print("Palabras en el trie:")
 print(getWords(t))
 
-print(search(t, "M"))
-print(search(t, "Ma"))
-print(search(t, "G"))
-print(search(t, "Gonzal"))
-print(search(t, "Gonzalo"))
-print(search(t, "Gonzalos"))
+print("\nPalabras que debe encontrar:")
+for word in wordsInTrie:
+    print(word, search(t, word))
+
+print("\nPalabras que no debe encontrar:")
+for word in wordsNotInTrie:
+    print(word, search(t, word))

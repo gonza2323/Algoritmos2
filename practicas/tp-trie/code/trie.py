@@ -40,24 +40,42 @@ def insert(T, element):
 
 # --- Ejercicio 1b
 def search(T, element):
-    if not element:
-        return True
-    
-    if not T or not T.root:
+    return True if _findLastNodeOfWord(T, element) else False
+
+
+def _findLastNodeOfWord(T, element):    
+    if not T or not T.root or not element:
         return False
     
     node = T.root
     element = element.lower()
     for i, char in enumerate(element):
-        indexChild = ord(char) - 97
-        nextNode = node.children[indexChild]
-        
-        if (not nextNode or
-            nextNode.key != char or
-            (i == len(element) - 1 and not nextNode.isEndOfWord)):
-           return False
+        node = node.children[ord(char) - 97]
+        if (not node or
+            node.key != char or
+            (i == len(element) - 1 and not node.isEndOfWord)):
+            return False
 
-        node = nextNode
+    return node
+# --- end
+
+
+# --- Ejercicio 3
+def delete(T, element):
+    if not T or not T.root or not element:
+        return False
+    
+    node = _findLastNodeOfWord(T, element) # final de palabra, si existe
+
+    if not node:
+        return False # Si no existe, no hacemos nada
+    
+    node.isEndOfWord = False
+
+    # Mientras no tenga hijos ni sea fin de otra palabra, borramos nodo:
+    while (not any(child for child in node.children) and not node.isEndOfWord):
+        node.parent.children[ord(node.key)-97] = None # borramos el nodo
+        node = node.parent # pasamos a su padre
 
     return True
 # --- end
@@ -85,6 +103,7 @@ def getWords(T):
     return words
 
 
+# Version para árboles binarios, no funciona en trie
 def toString(t):
     if not t:
         return None

@@ -101,7 +101,7 @@ Crear un módulo de nombre \textbf{trie.py} que implemente las siguientes especi
 \subsection*{Ejercicio 2 (no code)}
 Sabiendo que el orden de complejidad para el peor caso de la operación search() es de $O(m |\Sigma|)$. Proponga una versión de la operación search() cuya complejidad sea $O(m)$.
 \subsubsection*{Solución}
-% \inputcode{python3}{./code/snippets/ejercicio2.py}
+La implementación de search() en el ejercicio 1 ya es de orden O(m), ya que en cada nodo, no es necesario buscar al siguiente nodo hijo recorriendo una lista de largo $|\Sigma|$, sino que se accede a él directamente mediante acceso indexado en un arreglo de longitud $|\Sigma|$. Si se busca el nodo con la letra 'a', simplemente se accede al elemento 0 del arreglo. Si se quiere el nodo con la letra 'b', se accede al índice 1, y así para cualquier letra. Para calcular el índice correspondiente a cada letra, se resta 97 al valor asociado a la misma en ASCII (la letra debe ser minúsucula).
 
 
 \subsection*{Ejercicio 3}
@@ -112,7 +112,7 @@ Sabiendo que el orden de complejidad para el peor caso de la operación search()
     |\textbf{Salida}|: Devuelve False o True según se haya eliminado el elemento.
 \end{lstlisting}
 \subsubsection*{Solución}
-% \inputcode{python3}{./code/snippets/ejercicio3.py}
+\inputcode{python3}{./code/snippets/ejercicio3.py}
 
 
 \section*{Parte 2}
