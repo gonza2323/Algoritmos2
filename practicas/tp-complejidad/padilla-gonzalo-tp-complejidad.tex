@@ -67,7 +67,7 @@
 \subsection*{Ejercicio 1}
 Demuestre que $6n^3 \neq O(n^2)$.
 \subsubsection*{Solución}
-$6n^3 = O(n^2)$ es, por definición, equivalente a decir que existen valores $c$ y $n_0$ tal que $6n^3 < c n^2$ para $\forall n > n_0$. Se quiere demostrar lo opuesto, es decir, que para todo $c$ y $n_0$, existe $n > n_0$ tal que $6n^3 \geq c n^2$. Analizamos los puntos en los que $6n^3$ y $cn^2$ coinciden, y los intervalos definidos por tales puntos:
+$6n^3 = O(n^2)$ es, por definición, equivalente a decir que existen valores $c$ y $n_0$ tal que $6n^3 < c n^2$ para todo $n > n_0$. Se quiere demostrar lo opuesto, es decir, que para todo $c$ y $n_0$, existe $n > n_0$ tal que $6n^3 \geq c n^2$. Analizamos los puntos en los que $6n^3$ y $cn^2$ coinciden, y los intervalos definidos por tales puntos:
 
 \begin{align*}
     6n^3 &= cn^2 \\
@@ -75,7 +75,7 @@ $6n^3 = O(n^2)$ es, por definición, equivalente a decir que existen valores $c$
     n^2 \left (n - \frac{c}{6}\right ) &= 0
 \end{align*}
 
-Puede verse que ambas funciones son iguales en $n = 0$ y $n = c/6$. Para $n > c/6$, la diferencia es no negativa y, por lo tanto, $6n^3 \geq c n^2$. Si $n_0 \leq c/6$, entonces basta tomar $n = \lfloor c/6 \rfloor + 1 \geq n_0$, y se tendrá que $n > n_0$, y $6n^3 \geq c n^2$. Si, en cambio, $n_0 > c/6$, basta tomar $n = n_0 + 1 > c/6$, y se tendrá también que $n > n_0$, y $6n^3 > c n^2$.
+Puede verse que ambas funciones son iguales en $n = 0$ y $n = c/6$. Para $n > c/6$, la diferencia es no negativa y, por lo tanto, $6n^3 \geq c n^2$. Si $n_0 \leq c/6$, entonces basta tomar $n = \lfloor c/6 \rfloor + 1 \geq n_0$, y se tendrá que $n > n_0$, y $6n^3 \geq c n^2$. Si, en cambio, $n_0 > c/6$, basta tomar $n = n_0 + 1 > c/6$, y se tendrá también que $n > n_0$, y $6n^3 \geq c n^2$.
 
 Entonces, $\forall c \forall n_0 \exists n : [(n > n_0) \land (6n^3 \geq c n^2)]$. Por lo tanto, $6n^3 \neq O(n^2)$.
 
