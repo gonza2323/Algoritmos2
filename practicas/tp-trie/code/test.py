@@ -36,3 +36,13 @@ for word in wordsInTrie:
 print("\nPalabras que no debe encontrar:")
 for word in wordsNotInTrie:
     print(word, search(t, word))
+
+delete(t, "asdas")
+delete(t, "Bu")
+delete(t, "Gonza")
+delete(t, "Holanda")
+delete(t, "Ma")
+
+print("\nBorradas asdas, Bu, Gonza, Holanda, Ma:")
+for word in wordsInTrie:
+    print(word, search(t, word))
