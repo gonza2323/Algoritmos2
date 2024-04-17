@@ -166,6 +166,18 @@ def areEqual(t1, t2):
 # --- end
 
 
+# --- Ejercicio 6
+def hasInvertedWords(t):
+    return False
+# --- end
+
+
+# --- Ejercicio 7
+def autoCompletar(t, cadena):
+    return ""
+# --- end
+
+
 def getWords(T):
     if not T:
         return None
