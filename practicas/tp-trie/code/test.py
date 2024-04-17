@@ -39,10 +39,12 @@ for word in wordsNotInTrie:
 
 delete(t, "asdas")
 delete(t, "Bu")
-delete(t, "Gonza")
 delete(t, "Holanda")
 delete(t, "Ma")
 
-print("\nBorradas asdas, Bu, Gonza, Holanda, Ma:")
+print("\nBorradas asdas, Bu, Gonz, Holanda, Ma:")
 for word in wordsInTrie:
     print(word, search(t, word))
+
+print("\n")
+printWordsWithPrefixAndLength(t, "Gon", 7)

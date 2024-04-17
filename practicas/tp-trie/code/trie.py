@@ -81,6 +81,50 @@ def delete(T, element):
 # --- end
 
 
+# --- Ejercicio 4
+def printWordsWithPrefixAndLength(t, prefix, length):
+    if not t or not t.root or not prefix or not length:
+        return
+    
+    # Si el prefijo es mayor al largo de
+    # palabra, retornamos
+    if length < len(prefix):
+        return
+    
+    # Encontrar node final del prefijo
+    node = t.root
+    prefix = prefix.lower()
+    for c in prefix:
+        node = node.children[ord(c) - 97]
+        if not node or node.key != c:
+            return
+    
+    # Imprime palabras a partir de un nodo,
+    # que tengan el largo indicado
+    def printWordsFromNodeWithLength(node, word):
+        if not node:
+            return
+        
+        # Si llegamos al largo indicado,
+        # imprimimos si es final de palabra
+        # Si no, cortamos
+        if len(word) == length:
+            if node.isEndOfWord:
+                print(word)
+            return
+        
+        # Si todavía no llegamos al largo indicado
+        # recorremos cada hijo del nodo
+        for child in node.children:
+            if child:
+                printWordsFromNodeWithLength(child, word + child.key)
+
+    # Imprimimos palabras del largo indicado
+    # partiendo desde el final del prefijo
+    printWordsFromNodeWithLength(node, prefix)
+# --- end
+
+
 def getWords(T):
     if not T:
         return None
