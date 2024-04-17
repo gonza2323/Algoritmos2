@@ -28,7 +28,7 @@
     listing file={#3},
     minted language={#2},
     minted style=lightbulb,
-    breakable,
+    breakable=false,
     colback=bg,
     colframe=framecolor,
     #1
@@ -109,6 +109,7 @@ Implementar un algoritmo que ordene una lista de elementos donde siempre el elem
 \includegraphics[width=400px]{./img/ejemploEjercicio4.png}
 
 \subsubsection*{Solución}
+Armamos una nueva lista, que tenga el mismo elemento en el medio (índice $\lfloor (n - 1) / 2 \rfloor$) que la original. Recorremos la lista original. A medida que encontramos valores menores que el elemento del medio, los vamos colocando de forma alternate a cada lado de la nueva lista, empezando en los índices $j$ y $\lfloor (n - 1)/2 \rfloor + 1 + k$. Hacemos lo mismo si el valor es mayor, alternándolos en cada mitad, de forma independiente a los valores que son menores. Al finalizar, la nueva lista tendrá al elemento del medio en su misma posición, con la mitad (redondeada hacia abajo) de los valores menores que él y la mitad de los valores mayores o iguales que él a su izquierda, y el resto a su derecha. Como sólo se crea una lista de tamaño $n$ y se recorre una sola vez la lista original, la operación es de orden $O(n)$.
 
 \inputcode{python3}{./code/snippets/ejercicio4.py}
 
