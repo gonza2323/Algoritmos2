@@ -125,6 +125,47 @@ def printWordsWithPrefixAndLength(t, prefix, length):
 # --- end
 
 
+# --- Ejercicio 5
+def areEqual(t1, t2):
+    if not t1 or not t2:
+        return False
+    
+    # Caso trivial, mismo nodo en memoria
+    if t1 == t2:
+        return True
+    
+    # Compara nodo a nodo, recursivamente
+    def compareTrees(node1, node2):
+        # Si ambos son None
+        if not node1 and not node2:
+            return True
+        
+        
+        # Si uno es None y el otro no
+        if not node1 or not node2:
+            return False
+        
+        
+        # Si difieren en alguna forma
+        if (node1.key != node2.key
+            or node1.isEndOfWord != node2.isEndOfWord
+            or len(node1.children) != len(node2.children)):
+            return False
+        
+        # Comparar hijos
+        for i in range(len(node1.children)):
+            # Si alguno difiere, ya podemos retornar falso
+            if not compareTrees(node1.children[i], node2.children[i]):
+                return False
+        
+        # Se cumplió todo, retornamos que son iguales
+        return True
+    
+    # Comparamos ambos árboles a partir de la raíz
+    return compareTrees(t1.root, t2.root)
+# --- end
+
+
 def getWords(T):
     if not T:
         return None
