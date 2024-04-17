@@ -110,11 +110,17 @@ Implementar un algoritmo que ordene una lista de elementos donde siempre el elem
 
 \subsubsection*{Solución}
 
+\inputcode{python3}{./code/snippets/ejercicio4.py}
+
 
 \subsection*{Ejercicio 5}
 Implementar un algoritmo Contiene-Suma(A,n) que recibe una lista de enteros A y un entero n y devuelve True si existen en A un par de elementos que sumados den n. Analice el costo computacional.
 
 \subsubsection*{Solución}
+
+Primero ordenamos la lista, que es una operación de orden $O(n \log n)$. Luego la recorremos desde ambos extremos, verificando si la suma de el par de elementos actual es igual n. Si lo es, retornamos verdadero. Si es menor, avanzamos un paso desde la izquierda y verificamos nuevamente. Si es mayor, avanzamos desde la derecha. Si los punteros se encuentran, entonces no hay par de elementos que sumen $n$, entonces retornamos verdadero. La lista se recorre una sola vez, por lo que esta operación es de orden $O(n)$. Entonces, el orden de toda la operación está determinado por haber ordenado la lista, por lo tanto es de orden $O(n \log n)$.
+
+\inputcode{python3}{./code/snippets/ejercicio5.py}
 
 
 \subsection*{Ejercicio 6}
