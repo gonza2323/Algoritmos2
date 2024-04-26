@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,
+            top=2cm,
+            bottom=2cm,
+            left=3cm,
+            right=3cm,
+            headheight=36pt,
+            nomarginpar,
+            includehead,
+            includefoot,
+            ]{geometry}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[many, minted, listings]{tcolorbox}
+
+
+% Opciones para entornos de código fuente
+\definecolor{bg}{RGB}{29, 35, 49}
+\definecolor{framecolor}{RGB}{125, 138, 151}
+
+\newtcbinputlisting{\inputcode}[3][]{
+    listing only,
+    listing engine=minted,
+    listing file={#3},
+    minted language={#2},
+    minted style=lightbulb,
+    breakable,
+    colback=bg,
+    colframe=framecolor,
+    #1
+}
+
+
+% Opciones para entornos de pseudocódigo
+\lstset{
+    breakatwhitespace=true,             % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                    % sets automatic line breaking
+    keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+    columns=flexible,
+    escapechar=|,
+    literate=   {á}{{\'a}}1             % corrige errores de utf-8
+                {é}{{\'e}}1
+                {í}{{\'i}}1
+                {ó}{{\'o}}1
+                {ú}{{\'u}}1,
+}
+
+
+% Encabezado y pie de página
+\fancyhf{}
+\lhead{\includegraphics[height=32pt]{img/logo-uncuyo-fing.pdf}}
+\rhead{ Licenciatura en Ciencias de la Computación \\
+        Algoritmos y Estructuras de Datos II \\
+        TP N\textsuperscript{o} 4: Hash Tables}
+\rfoot{\thepage}
+\pagestyle{fancy}
+
+
+\begin{document}
+\input{titulo.tex}
+
+
+\subsection*{Ejercicio 1}
+Crear un módulo de nombre \textbf{trie.py} que implemente las siguientes especificaciones de las operaciones elementales para el \textbf{TAD Trie}.
+\begin{lstlisting}
+|\textbf{insert(T, element)}|
+    |\textbf{Descripción}|: insert un elemento en T, siendo T un Trie.
+    |\textbf{Entrada}|: El Trie sobre la cual se quiere agregar el elemento (Trie) y el valor del elemento (palabra) a agregar.
+    |\textbf{Salida}|: No hay salida definida.
+
+|\textbf{search(T, element)}|
+    |\textbf{Descripción}|: Verifica que un elemento se encuentre dentro del Trie.
+    |\textbf{Entrada}|: El Trie sobre la cual se quiere buscar el elemento (Trie) y el valor del elemento (palabra).
+    |\textbf{Salida}|: Devuelve False o True según se encuentre el elemento.
+\end{lstlisting}
+
+
+\end{document}
