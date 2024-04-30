@@ -9,6 +9,7 @@ class TrieNode:
     key = None
     isEndOfWord = False
 
+ALPHABET_SIZE = 26
 
 # --- Ejercicio 1a
 def insert(T, element):
@@ -17,17 +18,17 @@ def insert(T, element):
     
     if not T.root:
         T.root = TrieNode()
-        T.root.children = [None] * 27
+        T.root.children = [None] * ALPHABET_SIZE
 
     node = T.root
     element = element.lower()
     for i, char in enumerate(element):
-        indexChild = ord(char) - 97
+        indexChild = ord(char) - ord('a')
         nextNode = node.children[indexChild]
         if not nextNode:
             node.children[indexChild] = TrieNode()
             nextNode = node.children[indexChild]
-            nextNode.children = [None] * 27
+            nextNode.children = [None] * ALPHABET_SIZE
             nextNode.key = char
             nextNode.parent = node
         if i == len(element) - 1:
@@ -40,7 +41,7 @@ def insert(T, element):
 
 # --- Ejercicio 1b
 def search(T, element):
-    return True if _findLastNodeOfWord(T, element) else False
+    return bool(_findLastNodeOfWord(T, element))
 
 
 def _findLastNodeOfWord(T, element):    
@@ -50,7 +51,7 @@ def _findLastNodeOfWord(T, element):
     node = T.root
     element = element.lower()
     for i, char in enumerate(element):
-        node = node.children[ord(char) - 97]
+        node = node.children[ord(char) - ord('a')]
         if (not node or
             node.key != char or
             (i == len(element) - 1 and not node.isEndOfWord)):
@@ -74,7 +75,7 @@ def delete(T, element):
 
     # Mientras no tenga hijos ni sea fin de otra palabra, borramos nodo:
     while (not any(child for child in node.children) and not node.isEndOfWord):
-        node.parent.children[ord(node.key)-97] = None # borramos el nodo
+        node.parent.children[ord(node.key)-ord('a')] = None # borramos el nodo
         node = node.parent # pasamos a su padre
 
     return True
@@ -95,7 +96,7 @@ def printWordsWithPrefixAndLength(t, prefix, length):
     node = t.root
     prefix = prefix.lower()
     for c in prefix:
-        node = node.children[ord(c) - 97]
+        node = node.children[ord(c) - ord('a')]
         if not node or node.key != c:
             return
     
@@ -130,7 +131,7 @@ def areEqual(t1, t2):
     if not t1 or not t2:
         return False
     
-    # Caso trivial, mismo nodo en memoria
+    # Caso trivial, referencias al mismo dato en memoria
     if t1 == t2:
         return True
     
@@ -168,13 +169,61 @@ def areEqual(t1, t2):
 
 # --- Ejercicio 6
 def hasInvertedWords(t):
-    return False
+    if not t or not t.root:
+        return None
+    
+    # Recorremos el trie
+    def traverseTrie(word, node):
+        if not node:
+            return False
+        
+        # Vamos calculando la palabra actual
+        if node.key:
+            word = word + node.key
+        
+        # Si es final de palabra, buscamos su inverso en el trie
+        # Si está, retornamos verdadero, si no, revisamos los hijos
+        if node.isEndOfWord and search(t, word[::-1]):
+            return True
+
+        # Retornamos si se cumple para alguno de sus hijos
+        return any([traverseTrie(word, child) for child in node.children])
+
+    return traverseTrie("", t.root)
 # --- end
 
 
 # --- Ejercicio 7
 def autoCompletar(t, cadena):
-    return ""
+    if not t or cadena is None:
+        return None
+    
+    result = ""
+
+    # Buscamos el último nodo de la cadena
+    # Retornamos string vacío "" si no está
+    node = t.root
+    cadena = cadena.lower()
+    for char in cadena:
+        node = node.children[ord(char) - ord('a')]
+        if (not node or node.key != char):
+            return result
+
+    while True:
+        # Obtenemos los hijos que existen
+        notNoneChildren = [child for child in node.children if child]
+        
+        # Si hay distinto de 1, o el nodo actual es final de palabra
+        # retornamos el resultado actual
+        if len(notNoneChildren) != 1 or node.isEndOfWord:
+            break
+
+        # Si no, sumamos la siguiente letra al resultado
+        onlyChild = notNoneChildren[0]
+        result += onlyChild.key
+        node = onlyChild
+
+    return result
 # --- end
 
 

@@ -28,7 +28,7 @@
     listing file={#3},
     minted language={#2},
     minted style=lightbulb,
-    breakable,
+    breakable = false,
     colback=bg,
     colframe=framecolor,
     #1
@@ -98,6 +98,7 @@ Crear un módulo de nombre \textbf{trie.py} que implemente las siguientes especi
 \inputcode{python3}{./code/snippets/ejercicio1b.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 2 (no code)}
 Sabiendo que el orden de complejidad para el peor caso de la operación search() es de $O(m |\Sigma|)$. Proponga una versión de la operación search() cuya complejidad sea $O(m)$.
 \subsubsection*{Solución}
@@ -115,6 +116,7 @@ La implementación de search() en el ejercicio 1 ya es de orden O(m), ya que en 
 \inputcode{python3}{./code/snippets/ejercicio3.py}
 
 
+\pagebreak
 \section*{Parte 2}
 \subsection*{Ejercicio 4}
 Implementar un algoritmo que dado un árbol Trie T, un patrón p (prefijo) y un entero n, escriba todas las palabras del árbol que empiezan por p y sean de longitud n.
@@ -122,6 +124,7 @@ Implementar un algoritmo que dado un árbol Trie T, un patrón p (prefijo) y un 
 \inputcode{python3}{./code/snippets/ejercicio4.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 5}
 Implementar un algoritmo que dado los Trie T1 y T2 devuelva True si estos pertenecen al mismo documento y False en caso contrario. Se considera que un Trie pertenece al mismo documento cuando:
 \begin{enumerate}
@@ -141,6 +144,7 @@ Implemente un algoritmo que dado el Trie T devuelva True si existen en el docume
 \inputcode{python3}{./code/snippets/ejercicio6.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 7}
 Un corrector ortográfico interactivo utiliza un Trie para representar las palabras de su diccionario. Queremos añadir una función de auto-completar (al estilo de la tecla TAB en Linux): cuando estamos a medio escribir una palabra, si sólo existe una forma correcta de continuarla entonces debemos indicarlo.
 
