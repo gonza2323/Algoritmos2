@@ -63,20 +63,129 @@
 \begin{document}
 \input{titulo.tex}
 
-
+\section*{Parte 1}
 \subsection*{Ejercicio 1}
-Crear un módulo de nombre \textbf{trie.py} que implemente las siguientes especificaciones de las operaciones elementales para el \textbf{TAD Trie}.
-\begin{lstlisting}
-|\textbf{insert(T, element)}|
-    |\textbf{Descripción}|: insert un elemento en T, siendo T un Trie.
-    |\textbf{Entrada}|: El Trie sobre la cual se quiere agregar el elemento (Trie) y el valor del elemento (palabra) a agregar.
-    |\textbf{Salida}|: No hay salida definida.
+Ejemplificar que pasa cuando insertamos las llaves 5, 28, 19, 15, 20, 33, 12, 17, 10 en un HashTable con la colisión resulta por el método de chaining. Permita que la tabla tenga 9 slots y la función de hash:
+\begin{equation}
+    H(k) = k \mod 9
+\end{equation}
+\subsubsection*{Solución}
 
-|\textbf{search(T, element)}|
-    |\textbf{Descripción}|: Verifica que un elemento se encuentre dentro del Trie.
-    |\textbf{Entrada}|: El Trie sobre la cual se quiere buscar el elemento (Trie) y el valor del elemento (palabra).
-    |\textbf{Salida}|: Devuelve False o True según se encuentre el elemento.
+
+\subsection*{Ejercicio 2}
+A partir de una definición de diccionario como la siguiente:
+
+dictionary = Array(m,0) \# una sugerencia de implementación, se puede usar una lista de python
+
+Crear un módulo de nombre dictionary.py que implemente las siguientes especificaciones de las operaciones elementales para el TAD diccionario .
+
+Nota: dictionary puede ser redefinido para lidiar con las colisiones por encadenamiento.
+
+\begin{lstlisting}
+|\textbf{insert(D, key, value)}|
+|\qquad \textbf{Descripción}|: Inserta un key en una posición determinada por la función de hash (1) en el diccionario (dictionary). Resolver colisiones por encadenamiento. En caso de keys duplicados se anexan a la lista.
+|\qquad \textbf{Entrada}|: el diccionario sobre el cual se quiere realizar la inserción y el valor del key a insertar.        
+|\qquad \textbf{Salida}|: Devuelve D.
+
+|\textbf{search(D, key)}|
+|\qquad \textbf{Descripción}|: Busca un key en el diccionario.
+|\qquad \textbf{Entrada}|: El diccionario sobre el cual se quiere realizar la búsqueda (dictionary) y el valor del key a buscar.
+|\qquad \textbf{Salida}|: Devuelve el value de la key. Devuelve None si el key no se encuentra.        
+
+|\textbf{delete(D, key)}|
+|\qquad \textbf{Descripción}|: Elimina un key en la posición determinada por la función de hash (1) del diccionario (dictionary).
+|\qquad \textbf{Poscondición}|: Se debe marcar como None el key a eliminar.
+|\qquad \textbf{Entrada}|: El diccionario sobre el se quiere realizar la eliminación y el valor del key que se va a eliminar.
+|\qquad \textbf{Salida}|: Devuelve D.
 \end{lstlisting}
 
+\section*{Parte2}
+\subsection*{Ejercicio 3}
+Considerar una tabla hash de tamaño $m = 1000$ y una función de hash correspondiente al método de la multiplicación donde $A = (\sqrt{5}-1)/2)$. Calcular las ubicaciones para las claves 61, 62, 63, 64 y 65.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 4}
+Implemente un algoritmo lo más eficiente posible que devuelva True o False a la siguiente proposición: dado dos strings $s_1 \dots s_k$ y $p_1 \dots p_k$, se quiere encontrar si los caracteres de $p_1 \dots p_k$ corresponden a una permutación de $s_1 \dots s_k$. Justificar el costo en tiempo de la solución propuesta.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 5}
+Implemente un algoritmo que devuelva True si la lista que recibe de entrada tiene todos sus elementos únicos, y Falso en caso contrario. Justificar el costo en tiempo de la solución propuesta.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 6}
+Los nuevos códigos postales argentinos tienen la forma $cddddccc$, donde $c$ indica un carácter (A - Z) y $d$ indica un dígito $0, ... , 9$. Por ejemplo, C1024CWN es el código postal que representa a la calle XXXX a la altura 1024 en la Ciudad de Mendoza. Encontrar e implementar una función de hash apropiada para los códigos postales argentinos.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 7}
+Implemente un algoritmo para realizar la compresión básica de cadenas utilizando el recuento de caracteres repetidos. Por ejemplo, la cadena `aabcccccaaa' se convertiría en `a2blc5a3'. Si la cadena ``comprimida'' no se vuelve más pequeña que la cadena original, su método debería devolver la cadena original. Puedes asumir que la cadena sólo tiene letras mayúsculas y minúsculas (a - z, A - Z). Justificar el costo en tiempo de la solución propuesta.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 8}
+Se requiere encontrar la primera ocurrencia de un string $p_1 \dots p_k$ en uno más largo $a_1 \dots a_L$. Implementar esta estrategia de la forma más eficiente posible con un costo computacional menor a $O(K*L)$ (solución por fuerza bruta). Justificar el coste en tiempo de la solución propuesta.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 9}
+Considerar los conjuntos de enteros $S = {s_1, \dots , s_n}$ y $T = {t_1, \dots , t_m}$. Implemente un algoritmo que utilice una tabla de hash para determinar si $S \subseteq T$ (S subconjunto de T). ¿Cuál es la complejidad temporal del caso promedio del algoritmo propuesto?
+\subsubsection*{Solución}
+
+
+\section*{Parte3}
+
+\subsection*{Ejercicio 10}
+Considerar la inserción de las siguientes llaves: 10; 22; 31; 4; 15; 28; 17; 88; 59 en una tabla hash de longitud $m = 11$ utilizando direccionamiento abierto con una función de hash $h'(k) = k$. Mostrar el resultado de insertar estas llaves utilizando:
+\begin{enumerate}
+    \item Linear probing.
+    \item Quadratic probing con $c_1 = 1$ y $c_2 = 3$.
+    \item Double hashing con $h_1(k) = k$ y $h_2(k) = 1 +(k \mod ( m - 1))$.
+\end{enumerate}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 11 (opcional)}
+Implementar las operaciones de insert() y delete() dentro de una tabla hash vinculando todos los nodos libres en una lista. Se asume que un slot de la tabla puede almacenar un indicador (flag), un valor, junto a una o dos referencias (punteros). Todas las operaciones de diccionario y manejo de la lista enlazada deben ejecutarse en O(1). La lista debe estar doblemente enlazada o con una simplemente enlazada alcanza?
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 12}
+Las llaves 12, 18, 13, 2, 3, 23, 5 y 15 se insertan en una tabla hash inicialmente vacía de longitud 10 utilizando direccionamiento abierto con función hash $h(k) = k \mod 10$ y exploración lineal (linear probing). ¿Cuál es la tabla hash resultante? Justifique.
+
+\begin{center}
+    \includegraphics*[width=340px]{./img/ej12.png}
+\end{center}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 13}
+Una tabla hash de longitud 10 utiliza direccionamiento abierto con función hash $h(k)=k \mod 10$, y exploración lineal (linear probing). Después de insertar 6 valores en una tabla hash vacía, la tabla es como se muestra a continuación.
+
+\begin{tabular}{|c|c|}
+    \hline
+    0 &    \\ \hline
+    1 &    \\ \hline
+    2 & 42 \\ \hline
+    3 & 23 \\ \hline
+    4 & 34 \\ \hline
+    5 & 52 \\ \hline
+    6 & 46 \\ \hline
+    7 & 33 \\ \hline
+    8 &    \\ \hline
+    9 &    \\ \hline
+  \end{tabular}
+
+¿Cuál de las siguientes opciones da un posible orden en el que las llaves podrían haber sido
+insertadas en la tabla? Justifique
+\begin{enumerate}[label=(\Alph*), ref=\Alph*]
+    \item 46, 42, 34, 52, 23, 33
+    \item 34, 42, 23, 52, 33, 46
+    \item 46, 34, 42, 23, 52, 33
+    \item 42, 46, 33, 23, 34, 52
+\end{enumerate}
+\subsubsection*{Solución}
 
 \end{document}
