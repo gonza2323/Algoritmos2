@@ -80,3 +80,11 @@ def test_isPermutation():
     assert isPermutation("hola", None) == False
     assert isPermutation(None, None) == False
     assert isPermutation("", "") == False
+
+
+def test_noRepeatedElements():
+    assert noRepeatedElements(None) == False
+    assert noRepeatedElements([]) == True
+    assert noRepeatedElements([1,1,2,3,4]) == False
+    assert noRepeatedElements([1,0,2,3,4]) == True
+    assert noRepeatedElements([1,0,2,4,"4"]) == True

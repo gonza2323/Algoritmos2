@@ -89,3 +89,37 @@ def isPermutation(stringS, stringP):
     
     return True
 # --- end
+
+
+# --- Ejercicio 5
+def noRepeatedElements(lista):
+    if lista is None:
+        return False
+    
+    dictionary = dict()
+    
+    for item in lista:
+        if item in dictionary:
+            return False
+        dictionary[item] = item
+    
+    return True
+# --- end
+
+
+# --- Ejercicio 6
+def postalCodeHash(code):
+    code = code.upper()
+    ranges = [26, 10, 10, 10, 10, 26, 26, 26]
+    currentBase = 1
+    hash = 0
+
+    for i in range(len(code) - 1, -1, -1):
+        if code[i].isalpha():
+            hash += (ord(code[i]) - 65 ) * currentBase
+        else:
+            hash += int(code[i]) * currentBase
+        currentBase *= ranges[i]
+
+    return hash
+# --- end
