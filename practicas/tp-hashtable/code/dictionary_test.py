@@ -1,4 +1,4 @@
-from hashtable import *
+from dictionary import *
 
 
 def test_insert():

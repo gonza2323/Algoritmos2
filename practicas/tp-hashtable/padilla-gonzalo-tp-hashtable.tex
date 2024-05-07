@@ -67,10 +67,36 @@
 \subsection*{Ejercicio 1}
 Ejemplificar que pasa cuando insertamos las llaves 5, 28, 19, 15, 20, 33, 12, 17, 10 en un HashTable con la colisión resulta por el método de chaining. Permita que la tabla tenga 9 slots y la función de hash:
 \begin{equation}
-    H(k) = k \mod 9
+    H(k) = k \bmod 9
 \end{equation}
 \subsubsection*{Solución}
+Para cada llave se obtienen las siguientes posiciones en la tabla a partir de la función hash:
+\begin{itemize}
+    \item $H(5) = 5$
+    \item $H(28) = 1$
+    \item $H(19) = 1$ (Colisión)
+    \item $H(15) = 6$
+    \item $H(20) = 2$
+    \item $H(33) = 6$ (Colisión)
+    \item $H(12) = 3$
+    \item $H(17) = 8$
+    \item $H(10) = 1$ (Colisión)
+\end{itemize}
+Como utilizamos el método de chaining, cuando se produce una colisión, encadenamos la key a la última key en esa posición, utilizando una lista enlazada. La tabla resultante quedaría:
 
+\begin{tabular}{|c|l|}
+    \hline
+    i & Keys \\ \hline
+    0 &      \\ \hline
+    1 & 28 $\rightarrow$ 19 $\rightarrow$ 10 \\ \hline
+    2 & 20   \\ \hline
+    3 & 12   \\ \hline
+    4 &      \\ \hline
+    5 & 5    \\ \hline
+    6 & 15 $\rightarrow$ 33 \\ \hline
+    7 &      \\ \hline
+    8 & 17   \\ \hline
+\end{tabular}
 
 \subsection*{Ejercicio 2}
 A partir de una definición de diccionario como la siguiente:
@@ -104,7 +130,7 @@ Nota: dictionary puede ser redefinido para lidiar con las colisiones por encaden
 \inputcode{python3}{./code/snippets/ejercicio1c.py}
 
 
-\section*{Parte2}
+\section*{Parte 2}
 \subsection*{Ejercicio 3}
 Considerar una tabla hash de tamaño $m = 1000$ y una función de hash correspondiente al método de la multiplicación donde $A = (\sqrt{5}-1)/2)$. Calcular las ubicaciones para las claves 61, 62, 63, 64 y 65.
 \subsubsection*{Solución}
@@ -134,7 +160,7 @@ Implemente un algoritmo para realizar la compresión básica de cadenas utilizan
 
 
 \subsection*{Ejercicio 8}
-Se requiere encontrar la primera ocurrencia de un string $p_1 \dots p_k$ en uno más largo $a_1 \dots a_L$. Implementar esta estrategia de la forma más eficiente posible con un costo computacional menor a $O(K*L)$ (solución por fuerza bruta). Justificar el coste en tiempo de la solución propuesta.
+Se requiere encontrar la primera ocurrencia de un string $p_1 \dots p_k$ en uno más largo $a_1 \dots a_L$. Implementar esta estrategia de la forma más eficiente posible con un costo computacional menor a $O(K\cdot L)$ (solución por fuerza bruta). Justificar el coste en tiempo de la solución propuesta.
 \subsubsection*{Solución}
 
 
@@ -143,13 +169,13 @@ Considerar los conjuntos de enteros $S = {s_1, \dots , s_n}$ y $T = {t_1, \dots 
 \subsubsection*{Solución}
 
 
-\section*{Parte3}
+\section*{Parte 3}
 \subsection*{Ejercicio 10}
 Considerar la inserción de las siguientes llaves: 10; 22; 31; 4; 15; 28; 17; 88; 59 en una tabla hash de longitud $m = 11$ utilizando direccionamiento abierto con una función de hash $h'(k) = k$. Mostrar el resultado de insertar estas llaves utilizando:
 \begin{enumerate}
     \item Linear probing.
     \item Quadratic probing con $c_1 = 1$ y $c_2 = 3$.
-    \item Double hashing con $h_1(k) = k$ y $h_2(k) = 1 +(k \mod ( m - 1))$.
+    \item Double hashing con $h_1(k) = k$ y $h_2(k) = 1 +(k \bmod ( m - 1))$.
 \end{enumerate}
 \subsubsection*{Solución}
 
@@ -160,7 +186,7 @@ Implementar las operaciones de insert() y delete() dentro de una tabla hash vinc
 
 
 \subsection*{Ejercicio 12}
-Las llaves 12, 18, 13, 2, 3, 23, 5 y 15 se insertan en una tabla hash inicialmente vacía de longitud 10 utilizando direccionamiento abierto con función hash $h(k) = k \mod 10$ y exploración lineal (linear probing). ¿Cuál es la tabla hash resultante? Justifique.
+Las llaves 12, 18, 13, 2, 3, 23, 5 y 15 se insertan en una tabla hash inicialmente vacía de longitud 10 utilizando direccionamiento abierto con función hash $h(k) = k \bmod 10$ y exploración lineal (linear probing). ¿Cuál es la tabla hash resultante? Justifique.
 
 \begin{center}
     \includegraphics*[width=340px]{./img/ej12.png}
@@ -169,7 +195,7 @@ Las llaves 12, 18, 13, 2, 3, 23, 5 y 15 se insertan en una tabla hash inicialmen
 
 
 \subsection*{Ejercicio 13}
-Una tabla hash de longitud 10 utiliza direccionamiento abierto con función hash $h(k)=k \mod 10$, y exploración lineal (linear probing). Después de insertar 6 valores en una tabla hash vacía, la tabla es como se muestra a continuación.
+Una tabla hash de longitud 10 utiliza direccionamiento abierto con función hash $h(k)=k \bmod 10$, y exploración lineal (linear probing). Después de insertar 6 valores en una tabla hash vacía, la tabla es como se muestra a continuación.
 
 \begin{tabular}{|c|c|}
     \hline
