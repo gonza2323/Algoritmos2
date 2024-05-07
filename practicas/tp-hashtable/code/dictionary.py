@@ -5,18 +5,22 @@ def hash(k, m):
 
 # --- Ejercicio 1a
 def insert(d, key, value):
-    tableIndex = hash(key, len(d))
-    lista = d[tableIndex]
+    tableIndex = hash(key, len(d))  # Calculamos índice
+    lista = d[tableIndex]           # Obtenemos la lista en ese índice
 
+    # Si no existe una lista, creamos una conteniendo al par (key, value)
     if not lista:
         d[tableIndex] = [(key, value)]
         return d
     
+    # Si existe, vemos si ya está la key en ella
+    # En tal caso, actualizamos el valor asociado
     for i, (k, v) in enumerate(lista):
         if k == key:
             lista[i] = (key, value)
             return d
     
+    # Si no existe la key en la lista, agregamos el par (key, value)
     lista.append((key, value))
     return d
 # --- end
@@ -24,32 +28,34 @@ def insert(d, key, value):
 
 # --- Ejercicio 1b
 def search(d, key):
-    tableIndex = hash(key, len(d))
-    lista = d[tableIndex]
+    tableIndex = hash(key, len(d))  # Calculamos índice en la tabla
+    lista = d[tableIndex]           # Obtenemos la lista en ese índice
 
-    if not lista:
+    if not lista:                   # Si no existe, no está el elemento
         return None
     
+    # Si existe una lista, buscamos la key en ella
     for i, (k, v) in enumerate(lista):
-        if k == key:
-            return v
+        if k == key:                # Si existe en la lista,
+            return v                # retornamos el valor asociado
     
-    return None
+    return None                     # Si no existe en la lista, retornamos None
 # --- end
 
 
 # --- Ejercicio 1c
 def delete(d, key):
-    tableIndex = hash(key, len(d))
-    lista = d[tableIndex]
+    tableIndex = hash(key, len(d))  # Calculamos índice en la tabla
+    lista = d[tableIndex]           # Obtenemos la lista en ese índice
     
-    if not lista:
+    if not lista:                   # Si no existe, no está el elemento
         return d
     
+    # Si existe una lista, buscamos la key en ella
     for i, (k, v) in enumerate(lista):
-        if k == key:
-            lista.pop(i)
-            if len(lista) == 0:
+        if k == key:                # Si existe en la lista,
+            lista.pop(i)            # la sacamos de la lista
+            if len(lista) == 0:     # Si quedó vacía, la cambiamos por None
                 d[tableIndex] = None
             break
     
@@ -96,30 +102,35 @@ def noRepeatedElements(lista):
     if lista is None:
         return False
     
-    dictionary = dict()
+    dictionary = dict()         # Guardamos cada elemento en un diccionario
     
     for item in lista:
-        if item in dictionary:
-            return False
-        dictionary[item] = item
+        if item in dictionary:  # Si ya hay un elemento igual en el diccionario
+            return False        # La lista tiene elementos repetidos
+        dictionary[item] = item # Si no, lo añadimos al diccionario
     
-    return True
+    return True                 # Retornamos True si no hubo repeticiones
 # --- end
 
 
 # --- Ejercicio 6
 def postalCodeHash(code):
     code = code.upper()
+    
+    # Cantidad de valores posibles por posición del código postal
     ranges = [26, 10, 10, 10, 10, 26, 26, 26]
-    currentBase = 1
-    hash = 0
+    currentBase = 1 # Base con la cual multiplicar a un caracter
+    codeHash = 0    # Hash que se está calculando
 
+    # Recorremos el código postal de derecha a izquierda
+    # Multiplicamos al valor (mapeado de 0 a 25 para las letras)
+    # por la base actual y lo sumamos al hash. Luego actualizamos la base.
     for i in range(len(code) - 1, -1, -1):
         if code[i].isalpha():
-            hash += (ord(code[i]) - 65 ) * currentBase
+            codeHash += (ord(code[i]) - 65 ) * currentBase
         else:
-            hash += int(code[i]) * currentBase
+            codeHash += int(code[i]) * currentBase
         currentBase *= ranges[i]
 
-    return hash
+    return codeHash
 # --- end
