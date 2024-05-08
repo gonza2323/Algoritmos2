@@ -177,7 +177,7 @@ def findIndex(s, p):
 
 
 # --- Ejercicio 9
-def isSubset(s, p):
+def is_subset(s, p):
     pDictionary = dict()
     for element in p:
         pDictionary[element] = 1

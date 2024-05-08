@@ -99,3 +99,7 @@ def test_compress_string():
     assert compress_string("aaaabcccddaaabc") == "a4b1c3d2a3b1c1"
     assert compress_string("aaaabcccddaadbc") == "aaaabcccddaadbc"
     assert compress_string("abcd") == "abcd"
+
+
+def test_is_subset():
+    assert is_subset([5,8,2], [0,-5,5,12,8,2,42]) == True
