@@ -171,6 +171,20 @@ def compress_string(string):
 
 
 # --- Ejercicio 8
-def findIndex():
+def findIndex(s, p):
     return 0
+# --- end
+
+
+# --- Ejercicio 9
+def isSubset(s, p):
+    pDictionary = dict()
+    for element in p:
+        pDictionary[element] = 1
+    
+    for element in s:
+        if not pDictionary[element]:
+            return False
+    
+    return True
 # --- end
