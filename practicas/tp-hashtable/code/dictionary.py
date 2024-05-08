@@ -134,3 +134,43 @@ def postalCodeHash(code):
 
     return codeHash
 # --- end
+
+
+# --- Ejercicio 7
+def compress_string(string):
+    if string is None:
+        return None
+    
+    if not string:
+        return ""
+    
+    currentChar = string[0]
+    charCount = 1
+    newStringArray = [''] * len(string)
+    arrayIndex = 0
+
+    for i in range(1, len(string)):
+        if string[i] == currentChar:
+            charCount += 1
+        else:
+            newStringArray[arrayIndex] = currentChar
+            newStringArray[arrayIndex + 1] = str(charCount)
+
+            arrayIndex += 2
+            charCount = 1
+            currentChar = string[i]
+
+            if len(string) - arrayIndex < 3:
+                return string
+    
+    newStringArray[arrayIndex] = currentChar
+    newStringArray[arrayIndex + 1] = str(charCount)
+    
+    return ''.join(newStringArray[:arrayIndex + 2])
+# --- end
+
+
+# --- Ejercicio 8
+def findIndex():
+    return 0
+# --- end

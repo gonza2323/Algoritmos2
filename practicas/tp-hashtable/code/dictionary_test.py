@@ -88,3 +88,14 @@ def test_noRepeatedElements():
     assert noRepeatedElements([1,1,2,3,4]) == False
     assert noRepeatedElements([1,0,2,3,4]) == True
     assert noRepeatedElements([1,0,2,4,"4"]) == True
+
+
+def test_compress_string():
+    assert compress_string(None) == None
+    assert compress_string("") == ""
+    assert compress_string("aaaabcccddaaa") == "a4b1c3d2a3"
+    assert compress_string("aaaabcccddaaab") == "a4b1c3d2a3b1"
+    assert compress_string("aaabcccddaaabc") == "aaabcccddaaabc"
+    assert compress_string("aaaabcccddaaabc") == "a4b1c3d2a3b1c1"
+    assert compress_string("aaaabcccddaadbc") == "aaaabcccddaadbc"
+    assert compress_string("abcd") == "abcd"
