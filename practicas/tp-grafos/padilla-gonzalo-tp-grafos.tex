@@ -15,6 +15,7 @@
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{amssymb}
 \usepackage[many, minted, listings]{tcolorbox}
 
 
@@ -189,7 +190,7 @@ Implementar la función que responde a la siguiente especificación.
 \begin{lstlisting}
 |\textbf{def isBipartite(Grafo)}|
 |\qquad \textbf{Descripción}|: Implementa la operación es bipartito.
-|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia, v1 y v2 vértices del grafo.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
 |\qquad \textbf{Salida}|: Retorna True si el grafo es bipartito.
 \end{lstlisting}
 NOTA: Un grafo es bipartito si no tiene ciclos de longitud impar.
@@ -207,7 +208,80 @@ Demuestre que si la arista (u,v) no pertenece al árbol BFS, entonces los nivele
 
 
 \section*{Parte 3}
+\subsection*{Ejercicio 14}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def PRIM(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa el algoritmo de PRIM.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: Retorna el árbol abarcador de costo mínimo.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 15}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def KRUSKAL(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa el algoritmo de KRUSKAL.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: Retorna el árbol abarcador de costo mínimo.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 16}
+Demostrar que si la arista (u,v) de costo mínimo tiene un nodo en U y otro en V - U, entonces la arista (u,v) pertenece a un árbol abarcador de costo mínimo.
+\subsubsection*{Solución}
+
+
 \section*{Parte 4}
+\subsection*{Ejercicio 17}
+Sea e la arista de mayor costo de algún ciclo de G(V,A) . Demuestre que existe un árbol abarcador de costo mínimo AACM(V,A-e) que también lo es de G.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 18}
+Demuestre que si unimos dos AACM por un arco (arista) de costo mínimo el resultado es un nuevo AACM. (Base del funcionamiento del algoritmo de Kruskal).
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 19}
+Explique qué modificaciones habría que hacer en el algoritmo de Prim sobre el grafo no dirigido y conexo G(V,A), o sobre la función de costo $c(v1,v2) \rightarrow \mathbb{R}$ para lograr:
+\begin{enumerate}
+    \item Obtener un árbol de recubrimiento de costo máximo.
+    \item Obtener un árbol de recubrimiento cualquiera.
+    \item Dado un conjunto de aristas $E \in A$, que no forman un ciclo, encontrar el árbol de recubrimiento mínimo $G^c (V,A^c)$ tal que $E \in A^c$.
+\end{enumerate}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 20}
+Sea $G = <V, A>$ un grafo conexo, no dirigido y ponderado, donde todas las aristas tienen el mismo costo. Suponiendo que G está implementado usando matriz de adyacencia, haga en pseudocódigo un algoritmo $O(V^2)$ que devuelva una matriz M de VxV donde: M[u, v] = 1 si $(u,v) \in A$ y (u, v) estará obligatoriamente en todo árbol abarcador de costo mínimo de G, y cero en caso contrario.
+\subsubsection*{Solución}
+
+
 \section*{Parte 5}
+\subsection*{Ejercicio 21}
+Implementar el Algoritmo de Dijkstra que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def shortestPath(Grafo, s, v)}|
+|\qquad \textbf{Descripción}|: Implementa el algoritmo de Dijkstra.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Matriz de Adyacencia, vértice de inicio s y destino v.
+|\qquad \textbf{Salida}|: Retorna la lista de los vértices que conforman el camino iniciando por s y terminando en v. Devolver NONE en caso que no exista camino entre s y v.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 22 (Opcional)}
+Sea $G = <V, A>$ un grafo dirigido y ponderado con la función de costos $C: A \rightarrow R$ de forma tal que $C(v, w) > 0$ para todo arco $<v, w>\ \in A$. Se define el costo $C(p)$ de todo camino $p = <v_0, v_1, \dots, v_k>$ como $C(v_0, v_1) \times C(v_1, v_2) \times \dots \times C(v_k - 1, v_k)$.
+\begin{enumerate}
+    \item Demuestre que si $p = <v_0, v_1, \dots, v_k>$ es el camino de menor costo con respecto a $C$ en ir de $v_0$ hacia $v_k$, entonces $<v_i, v_i + 1, \dots, vj>$ es el camino de menor costo (también con respecto a $C$) en ir de $v_i$ a $v_j$ para todo $0 \leq i < j \leq k$.
+    \item ¿Bajo qué condición o condiciones se puede afirmar que con respecto a $C$ existe camino de costo mínimo entre dos vértices a, $b \in V$? Justifique su respuesta.
+    \item Demuestre que, usando la función de costos $C$ tal y como la dan, no se puede aplicar el algoritmo de Dijkstra para hallar los costos de los caminos de costo mínimo desde un vértice de origen s hacia el resto.
+    \item Plantee un algoritmo, lo más eficiente en tiempo que usted pueda, que determine los costos de los caminos de costo mínimo desde un vértice de origen $s$ hacia el resto usando la función de costos $C$.
+    \item Suponiendo que $C(v, w) > 1$ para todo $<v, w> \in A$, proponga una función de costos $C':A \rightarrow R$ y además la forma de calcular el costo $C'(p)$ de todo camino $p = <v_0, v_1, \dots, v_k>$ de forma tal que: aplicando el algoritmo de Dijkstra usando $C'$, se puedan obtener los costos (con respecto a la función original $C$) de los caminos de costo mínimo desde un vértice de origen $s$ hacia el resto. Justifique su respuesta.
+\end{enumerate}
+\subsubsection*{Solución}
 
 \end{document}
