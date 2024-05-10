@@ -1,11 +1,11 @@
 
-def hash(k, m):
+def hash_function(k, m):
     return k % m
 
 
 # --- Ejercicio 1a
 def insert(d, key, value):
-    tableIndex = hash(key, len(d))  # Calculamos índice
+    tableIndex = hash_function(key, len(d))  # Calculamos índice
     lista = d[tableIndex]           # Obtenemos la lista en ese índice
 
     # Si no existe una lista, creamos una conteniendo al par (key, value)
@@ -28,7 +28,7 @@ def insert(d, key, value):
 
 # --- Ejercicio 1b
 def search(d, key):
-    tableIndex = hash(key, len(d))  # Calculamos índice en la tabla
+    tableIndex = hash_function(key, len(d))  # Calculamos índice en la tabla
     lista = d[tableIndex]           # Obtenemos la lista en ese índice
 
     if not lista:                   # Si no existe, no está el elemento
@@ -45,7 +45,7 @@ def search(d, key):
 
 # --- Ejercicio 1c
 def delete(d, key):
-    tableIndex = hash(key, len(d))  # Calculamos índice en la tabla
+    tableIndex = hash_function(key, len(d))  # Calculamos índice en la tabla
     lista = d[tableIndex]           # Obtenemos la lista en ese índice
     
     if not lista:                   # Si no existe, no está el elemento
@@ -171,8 +171,62 @@ def compress_string(string):
 
 
 # --- Ejercicio 8
-def findIndex(s, p):
-    return 0
+def find_index(s, p):
+    if not s or not p or len(s) > len(p):
+        return None
+    
+    s = s.lower()
+    p = p.lower()
+
+    lettersInS = dict()
+
+    uniqueLetters = 0
+    for letter in s:
+        if letter not in lettersInS:
+            lettersInS[letter] = uniqueLetters
+            uniqueLetters += 1
+    
+    radix = uniqueLetters
+    largestBase = radix ** (len(s) - 1)
+    hashS = 0
+    hash = 0
+    correctLettersInHash = 0
+
+    for letter in s:
+        hashS *= radix
+        hashS += lettersInS[letter]
+
+    for i in range(len(s)):
+        hash *= radix
+        letter = p[i]
+        if letter in lettersInS:
+            correctLettersInHash += 1
+            hash += lettersInS[letter]
+    
+    if correctLettersInHash == len(s) and hashS == hash:
+        return 0
+
+    j = 0
+    for i in range(len(s), len(p)):
+        lastLetter = p[j]
+        nextLetter = p[i]
+        
+        if lastLetter in lettersInS:
+            correctLettersInHash += -1
+            hash += - lettersInS[lastLetter] * largestBase
+        
+        hash *= radix
+
+        if nextLetter in lettersInS:
+            correctLettersInHash += +1
+            hash += lettersInS[nextLetter]
+        
+        if correctLettersInHash == len(s) and hashS == hash:
+            return j + 1
+
+        j += 1
+    
+    return None
 # --- end
 
 

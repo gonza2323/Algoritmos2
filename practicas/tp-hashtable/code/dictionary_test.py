@@ -103,3 +103,25 @@ def test_compress_string():
 
 def test_is_subset():
     assert is_subset([5,8,2], [0,-5,5,12,8,2,42]) == True
+
+
+def test_find_index():
+    assert find_index("cada", "abracadabra") == 4
+    assert find_index("abra", "abracadabra") == 0
+    assert find_index("dabra", "abracadabra") == 6
+    assert find_index("asdf", "abracadabra") == None
+    assert find_index("a", "abracadabra") == 0
+    assert find_index("f", "abracadabrf") == 10
+    assert find_index("s", "abracsdabra") == 5
+    assert find_index("abracadabra", "abracadabra") == 0
+    assert find_index("abracaaabra", "abracadabra") == None
+    assert find_index("abracadabra", "abra") == None
+    assert find_index("abracadabra", "") == None
+    assert find_index("", "abracadabra") == None
+    assert find_index("es ", "Esto es una prueba mas compleja y es mas dificil") == 5
+    assert find_index("prueba", "Esto es una prueba mas compleja y es mas dificil") == 12
+    assert find_index("dificil", "Esto es una prueba mas compleja y es mas dificil") == 41
+    assert find_index("E", "Esto es una prueba mas compleja y es mas dificil") == 0
+    assert find_index("j", "Esto es una prueba mas compleja y es mas dificil") == 29
+    assert find_index("l", "Esto es una prueba mas dificil") == 29
+    assert find_index(" es una", "Esto es una prueba mas dificil") == 4
