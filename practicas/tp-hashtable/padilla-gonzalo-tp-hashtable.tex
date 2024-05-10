@@ -16,6 +16,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage[many, minted, listings]{tcolorbox}
+\usepackage{multicol}
 
 
 % Opciones para entornos de código fuente
@@ -71,8 +72,9 @@ Ejemplificar que pasa cuando insertamos las llaves 5, 28, 19, 15, 20, 33, 12, 17
 \end{equation}
 \subsubsection*{Solución}
 Para cada llave se obtienen las siguientes posiciones en la tabla a partir de la función hash:
-\begin{itemize}
-    \item $H(5) = 5$
+\begin{multicols}{2}
+\begin{enumerate}[topsep=0pt, parsep=0pt, itemsep=4pt]
+    \item $H(5)  = 5$
     \item $H(28) = 1$
     \item $H(19) = 1$ (Colisión)
     \item $H(15) = 6$
@@ -81,9 +83,11 @@ Para cada llave se obtienen las siguientes posiciones en la tabla a partir de la
     \item $H(12) = 3$
     \item $H(17) = 8$
     \item $H(10) = 1$ (Colisión)
-\end{itemize}
+\end{enumerate}
+\end{multicols}
 Como utilizamos el método de chaining, cuando se produce una colisión, encadenamos la key a la última key en esa posición, utilizando una lista enlazada. La tabla resultante quedaría:
 
+\begin{center}
 \begin{tabular}{|c|l|}
     \hline
     i & Keys \\ \hline
@@ -97,8 +101,9 @@ Como utilizamos el método de chaining, cuando se produce una colisión, encaden
     7 &      \\ \hline
     8 & 17   \\ \hline
 \end{tabular}
+\end{center}
 
-\pagebreak
+
 \subsection*{Ejercicio 2}
 A partir de una definición de diccionario como la siguiente:
 
@@ -113,7 +118,9 @@ Nota: dictionary puede ser redefinido para lidiar con las colisiones por encaden
 |\qquad \textbf{Descripción}|: Inserta un key en una posición determinada por la función de hash (1) en el diccionario (dictionary). Resolver colisiones por encadenamiento. En caso de keys duplicados se anexan a la lista.
 |\qquad \textbf{Entrada}|: el diccionario sobre el cual se quiere realizar la inserción y el valor del key a insertar.        
 |\qquad \textbf{Salida}|: Devuelve D.
-
+\end{lstlisting}
+\pagebreak
+\begin{lstlisting}
 |\textbf{search(D, key)}|
 |\qquad \textbf{Descripción}|: Busca un key en el diccionario.
 |\qquad \textbf{Entrada}|: El diccionario sobre el cual se quiere realizar la búsqueda (dictionary) y el valor del key a buscar.
@@ -127,8 +134,8 @@ Nota: dictionary puede ser redefinido para lidiar con las colisiones por encaden
 \end{lstlisting}
 \subsubsection*{Solución}
 \inputcode{python3}{./code/snippets/ejercicio1a.py}
-\pagebreak
 \inputcode{python3}{./code/snippets/ejercicio1b.py}
+\pagebreak
 \inputcode{python3}{./code/snippets/ejercicio1c.py}
 
 
@@ -136,14 +143,24 @@ Nota: dictionary puede ser redefinido para lidiar con las colisiones por encaden
 \subsection*{Ejercicio 3}
 Considerar una tabla hash de tamaño $m = 1000$ y una función de hash correspondiente al método de la multiplicación donde $A = (\sqrt{5}-1)/2)$. Calcular las ubicaciones para las claves 61, 62, 63, 64 y 65.
 \subsubsection*{Solución}
+Se obtienen las siguientes ubicaciones:
+\begin{itemize}
+    \item $H(61) = \lfloor m\ (61\ (\sqrt{5}-1)/2 \bmod 1) \rfloor = 700$
+    \item $H(62) = \lfloor m\ (62\ (\sqrt{5}-1)/2 \bmod 1) \rfloor = 318$
+    \item $H(63) = \lfloor m\ (63\ (\sqrt{5}-1)/2 \bmod 1) \rfloor = 936$
+    \item $H(64) = \lfloor m\ (64\ (\sqrt{5}-1)/2 \bmod 1) \rfloor = 554$
+    \item $H(65) = \lfloor m\ (65\ (\sqrt{5}-1)/2 \bmod 1) \rfloor = 172$
+\end{itemize}
 
 
+\pagebreak
 \subsection*{Ejercicio 4}
 Implemente un algoritmo lo más eficiente posible que devuelva True o False a la siguiente proposición: dado dos strings $s_1 \dots s_k$ y $p_1 \dots p_k$, se quiere encontrar si los caracteres de $p_1 \dots p_k$ corresponden a una permutación de $s_1 \dots s_k$. Justificar el costo en tiempo de la solución propuesta.
 \subsubsection*{Solución}
 \inputcode{python3}{./code/snippets/ejercicio4.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 5}
 Implemente un algoritmo que devuelva True si la lista que recibe de entrada tiene todos sus elementos únicos, y Falso en caso contrario. Justificar el costo en tiempo de la solución propuesta.
 \subsubsection*{Solución}
@@ -156,6 +173,7 @@ Los nuevos códigos postales argentinos tienen la forma $cddddccc$, donde $c$ in
 \inputcode{python3}{./code/snippets/ejercicio6.py}
 
 
+\pagebreak
 \subsection*{Ejercicio 7}
 Implemente un algoritmo para realizar la compresión básica de cadenas utilizando el recuento de caracteres repetidos. Por ejemplo, la cadena `aabcccccaaa' se convertiría en `a2blc5a3'. Si la cadena ``comprimida'' no se vuelve más pequeña que la cadena original, su método debería devolver la cadena original. Puedes asumir que la cadena sólo tiene letras mayúsculas y minúsculas (a - z, A - Z). Justificar el costo en tiempo de la solución propuesta.
 \subsubsection*{Solución}
@@ -165,6 +183,7 @@ Implemente un algoritmo para realizar la compresión básica de cadenas utilizan
 \subsection*{Ejercicio 8}
 Se requiere encontrar la primera ocurrencia de un string $p_1 \dots p_k$ en uno más largo $a_1 \dots a_L$. Implementar esta estrategia de la forma más eficiente posible con un costo computacional menor a $O(K\cdot L)$ (solución por fuerza bruta). Justificar el coste en tiempo de la solución propuesta.
 \subsubsection*{Solución}
+\pagebreak
 \inputcode{python3}{./code/snippets/ejercicio8.py}
 
 
@@ -183,11 +202,27 @@ Considerar la inserción de las siguientes llaves: 10; 22; 31; 4; 15; 28; 17; 88
     \item Double hashing con $h_1(k) = k$ y $h_2(k) = 1 +(k \bmod ( m - 1))$.
 \end{enumerate}
 \subsubsection*{Solución}
+\begin{center}
+\begin{tabular}{|c|l|l|l|}
+    \hline
+    i  & Linear & Quadratic & Double Hashing \\ \hline
+    0  & 22     & 22        & 22             \\ \hline
+    1  & 88     &           &                \\ \hline
+    2  &        & 88        & 59             \\ \hline
+    3  &        & 17        & 17             \\ \hline
+    4  & 4      & 4         & 4              \\ \hline
+    5  & 15     &           & 15             \\ \hline
+    6  & 28     & 28        & 28             \\ \hline
+    7  & 17     & 59        & 88             \\ \hline
+    8  & 59     & 15        &                \\ \hline
+    9  & 31     & 31        & 31             \\ \hline
+    10 & 10     & 10        & 10             \\ \hline
+\end{tabular}
+\end{center}
 
 
 \subsection*{Ejercicio 11 (opcional)}
 Implementar las operaciones de insert() y delete() dentro de una tabla hash vinculando todos los nodos libres en una lista. Se asume que un slot de la tabla puede almacenar un indicador (flag), un valor, junto a una o dos referencias (punteros). Todas las operaciones de diccionario y manejo de la lista enlazada deben ejecutarse en O(1). La lista debe estar doblemente enlazada o con una simplemente enlazada alcanza?
-\subsubsection*{Solución}
 
 
 \subsection*{Ejercicio 12}
@@ -197,11 +232,39 @@ Las llaves 12, 18, 13, 2, 3, 23, 5 y 15 se insertan en una tabla hash inicialmen
     \includegraphics*[width=340px]{./img/ej12.png}
 \end{center}
 \subsubsection*{Solución}
+Para cada llave se obtienen las siguientes posiciones en la tabla a partir de la función hash:
+\begin{multicols}{2}
+\begin{enumerate}[topsep=0pt, parsep=0pt, itemsep=2pt]
+    \item $h(12, 0) = 2$
+    \item $h(18, 0) = 8$
+    \item $h(13, 0) = 3$
+    \item $h(2 , 0) = 2$ (Colisión)
+    \item $h(2 , 1) = 3$ (Colisión)
+    \item $h(2 , 2) = 4$
+    \item $h(3 , 0) = 3$ (Colisión)
+    \item $h(3 , 1) = 4$ (Colisión)
+    \item $h(3 , 2) = 5$
+    \item $h(23, 0) = 3$ (Colisión)
+    \item $h(23, 1) = 4$ (Colisión)
+    \item $h(23, 2) = 5$ (Colisión)
+    \item $h(23, 3) = 6$
+    \item $h(5 , 0) = 5$ (Colisión)
+    \item $h(5 , 1) = 6$ (Colisión)
+    \item $h(5 , 2) = 7$
+    \item $h(15, 0) = 5$ (Colisión)
+    \item $h(15, 1) = 6$ (Colisión)
+    \item $h(15, 2) = 7$ (Colisión)
+    \item $h(15, 3) = 8$ (Colisión)
+    \item $h(15, 4) = 9$
+\end{enumerate}
+\end{multicols}
+Lo cual coincide con la tabla (C).
 
 
 \subsection*{Ejercicio 13}
 Una tabla hash de longitud 10 utiliza direccionamiento abierto con función hash $h(k)=k \bmod 10$, y exploración lineal (linear probing). Después de insertar 6 valores en una tabla hash vacía, la tabla es como se muestra a continuación.
 
+\begin{center}
 \begin{tabular}{|c|c|}
     \hline
     0 &    \\ \hline
@@ -214,7 +277,8 @@ Una tabla hash de longitud 10 utiliza direccionamiento abierto con función hash
     7 & 33 \\ \hline
     8 &    \\ \hline
     9 &    \\ \hline
-  \end{tabular}
+\end{tabular}
+\end{center}
 
 ¿Cuál de las siguientes opciones da un posible orden en el que las llaves podrían haber sido
 insertadas en la tabla? Justifique
@@ -225,5 +289,10 @@ insertadas en la tabla? Justifique
     \item 42, 46, 33, 23, 34, 52
 \end{enumerate}
 \subsubsection*{Solución}
-
+\begin{enumerate}[label=(\Alph*), ref=\Alph*]
+    \item No es un orden posible, ya que el 52, con $h(52) = 2$, debería ocupar la posición 3 (hasta ahora libre), al estar ocupada la posición 2 por el 42 insertado anteriormente.
+    \item No es un orden posible, ya que el 33, con $h(33) = 3$, debería ocupar la posición 6 (hasta ahora libre), al estar ocupada la posición 3 por el 23, y las siguientes por 34 y 52.
+    \item Es un orden posible, ya que las únicas colisiones son producidas por el 52, con $h(52) = 2$, que termina ocupando la posición 5 al estar ocupadas desde las posiciones desde la 2 hasta la 4; y el 33, con $h(33) = 3$, que termina ocupando la posición 7 al estar ocupadas las posiciones desde la 3 hasta la 6.
+    \item No es un orden posible, ya que el 33, con $h(33) = 3$, termina ocupando la posición 3, ya que no está ocupada, en lugar de la 7.
+\end{enumerate}
 \end{document}
