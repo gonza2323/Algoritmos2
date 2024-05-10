@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,
+            top=2cm,
+            bottom=2cm,
+            left=3cm,
+            right=3cm,
+            headheight=36pt,
+            nomarginpar,
+            includehead,
+            includefoot,
+            ]{geometry}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[many, minted, listings]{tcolorbox}
+
+
+% Opciones para entornos de código fuente
+\definecolor{bg}{RGB}{29, 35, 49}
+\definecolor{framecolor}{RGB}{125, 138, 151}
+
+\newtcbinputlisting{\inputcode}[3][]{
+    listing only,
+    listing engine=minted,
+    listing file={#3},
+    minted language={#2},
+    minted style=lightbulb,
+    breakable,
+    colback=bg,
+    colframe=framecolor,
+    #1
+}
+
+
+% Opciones para entornos de pseudocódigo
+\lstset{
+    breakatwhitespace=true,             % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                    % sets automatic line breaking
+    keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+    columns=flexible,
+    escapechar=|,
+    literate=   {á}{{\'a}}1             % corrige errores de utf-8
+                {é}{{\'e}}1
+                {í}{{\'i}}1
+                {ó}{{\'o}}1
+                {ú}{{\'u}}1,
+}
+
+
+% Encabezado y pie de página
+\fancyhf{}
+\lhead{\includegraphics[height=32pt]{img/logo-uncuyo-fing.pdf}}
+\rhead{ Licenciatura en Ciencias de la Computación \\
+        Algoritmos y Estructuras de Datos II \\
+        TP N\textsuperscript{o} 5: Grafos}
+\rfoot{\thepage}
+\pagestyle{fancy}
+
+
+\begin{document}
+\input{titulo.tex}
+
+\section*{Parte 1}
+\subsection*{Ejercicio 1}
+
+\begin{lstlisting}
+|\textbf{insert(D, key, value)}|
+|\qquad \textbf{Descripción}|: Inserta un key en una posición determinada por la función de hash (1) en el diccionario (dictionary). Resolver colisiones por encadenamiento. En caso de keys duplicados se anexan a la lista.
+|\qquad \textbf{Entrada}|: el diccionario sobre el cual se quiere realizar la inserción y el valor del key a insertar.        
+|\qquad \textbf{Salida}|: Devuelve D.
+
+|\textbf{search(D, key)}|
+|\qquad \textbf{Descripción}|: Busca un key en el diccionario.
+|\qquad \textbf{Entrada}|: El diccionario sobre el cual se quiere realizar la búsqueda (dictionary) y el valor del key a buscar.
+|\qquad \textbf{Salida}|: Devuelve el value de la key. Devuelve None si el key no se encuentra.        
+
+|\textbf{delete(D, key)}|
+|\qquad \textbf{Descripción}|: Elimina un key en la posición determinada por la función de hash (1) del diccionario (dictionary).
+|\qquad \textbf{Poscondición}|: Se debe marcar como None el key a eliminar.
+|\qquad \textbf{Entrada}|: El diccionario sobre el se quiere realizar la eliminación y el valor del key que se va a eliminar.
+|\qquad \textbf{Salida}|: Devuelve D.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+\end{document}
