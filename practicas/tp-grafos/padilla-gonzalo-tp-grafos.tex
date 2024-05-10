@@ -63,26 +63,151 @@
 \begin{document}
 \input{titulo.tex}
 
+
 \section*{Parte 1}
-\subsection*{Ejercicio 1}
-
+A partir de la siguiente definición:
 \begin{lstlisting}
-|\textbf{insert(D, key, value)}|
-|\qquad \textbf{Descripción}|: Inserta un key en una posición determinada por la función de hash (1) en el diccionario (dictionary). Resolver colisiones por encadenamiento. En caso de keys duplicados se anexan a la lista.
-|\qquad \textbf{Entrada}|: el diccionario sobre el cual se quiere realizar la inserción y el valor del key a insertar.        
-|\qquad \textbf{Salida}|: Devuelve D.
+    Graph = Array(n, LinkedList())
+\end{lstlisting}
+Donde Graph es una representación de un grafo simple mediante listas de adyacencia resolver los siguiente ejercicios.
 
-|\textbf{search(D, key)}|
-|\qquad \textbf{Descripción}|: Busca un key en el diccionario.
-|\qquad \textbf{Entrada}|: El diccionario sobre el cual se quiere realizar la búsqueda (dictionary) y el valor del key a buscar.
-|\qquad \textbf{Salida}|: Devuelve el value de la key. Devuelve None si el key no se encuentra.        
 
-|\textbf{delete(D, key)}|
-|\qquad \textbf{Descripción}|: Elimina un key en la posición determinada por la función de hash (1) del diccionario (dictionary).
-|\qquad \textbf{Poscondición}|: Se debe marcar como None el key a eliminar.
-|\qquad \textbf{Entrada}|: El diccionario sobre el se quiere realizar la eliminación y el valor del key que se va a eliminar.
-|\qquad \textbf{Salida}|: Devuelve D.
+\subsection*{Ejercicio 1}
+Implementar la función crear grafo que dada una lista de vértices y una lista de aristas cree un grafo con la representación por Lista de Adyacencia.
+\begin{lstlisting}
+|\textbf{def createGraph(List, List)}|
+|\qquad \textbf{Descripción}|: Implementa la operación crear grafo.
+|\qquad \textbf{Entrada}|: LinkedList con la lista de vértices y la LinkedList con la lista de aristas donde por cada par de elementos representa una conexión entre dos vértices.
+|\qquad \textbf{Salida}|: Retorna el nuevo grafo.
 \end{lstlisting}
 \subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 2}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def existPath(Grafo, v1, v2)}|
+|\qquad \textbf{Descripción}|: Implementa la operación existe camino que busca si existe un camino entre los vértices v1 y v2.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia, v1 y v2 vértices en el grafo.
+|\qquad \textbf{Salida}|: retorna True si existe camino entre v1 y v2, False en caso contrario.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 3}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def isConnected(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa la operación es conexo.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: retorna True si existe camino entre todo par de vértices, False en caso contrario.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 4}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def isTree(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa la operación es árbol.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: Retorna True si el grafo es un árbol.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 5}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def isComplete(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa la operación es completo.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: Retorna True si el grafo es completo.
+\end{lstlisting}
+Nota: tener en cuenta que un grafo es completo cuando existe una arista entre todo par de vértices.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 6}
+Implementar una función que dado un grafo devuelva una lista de aristas que si se eliminan el grafo se convierte en un árbol. Respetar la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def convertTree(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa la operación convertir a árbol.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: LinkedList de las aristas que se pueden eliminar y el grafo resultante se convierte en un árbol.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\section*{Parte 2}
+\subsection*{Ejercicio 7}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def countConnections(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa la operación cantidad de componentes conexas.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia.
+|\qquad \textbf{Salida}|: Retorna el número de componentes conexas que componen el grafo.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 8}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def convertToBFSTree(Grafo, v)}|
+|\qquad \textbf{Descripción}|: Convierte un grafo en un árbol BFS.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia, v vértice que representa la raíz del árbol.
+|\qquad \textbf{Salida}|: Devuelve una Lista de Adyacencia con la representación BFS del grafo recibido usando v como raíz.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 9}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def convertToDFSTree(Grafo, v)}|
+|\qquad \textbf{Descripción}|: Convierte un grafo en un árbol DFS.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia, v vértice que representa la raíz del árbol.
+|\qquad \textbf{Salida}|: Devuelve una Lista de Adyacencia con la representación DFS del grafo recibido usando v como raíz.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 10}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def bestRoad(Grafo, v1, v2)}|
+|\qquad \textbf{Descripción}|: Encuentra el camino más corto, en caso de existir, entre dos vértices.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia, v1 y v2 vértices del grafo.
+|\qquad \textbf{Salida}|: Retorna la lista de vértices que representan el camino más corto entre v1 y v2. La lista resultante contiene al inicio a v1 y al final a v2. En caso que no exista camino se retorna la lista vacía.
+\end{lstlisting}
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 11 (Opcional)}
+Implementar la función que responde a la siguiente especificación.
+\begin{lstlisting}
+|\textbf{def isBipartite(Grafo)}|
+|\qquad \textbf{Descripción}|: Implementa la operación es bipartito.
+|\qquad \textbf{Entrada}|: Grafo con la representación de Lista de Adyacencia, v1 y v2 vértices del grafo.
+|\qquad \textbf{Salida}|: Retorna True si el grafo es bipartito.
+\end{lstlisting}
+NOTA: Un grafo es bipartito si no tiene ciclos de longitud impar.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 12}
+Demuestre que si el grafo G es un árbol y se le agrega una arista nueva entre cualquier par de vértices se forma exactamente un ciclo y deja de ser un árbol.
+\subsubsection*{Solución}
+
+
+\subsection*{Ejercicio 13}
+Demuestre que si la arista (u,v) no pertenece al árbol BFS, entonces los niveles de u y v difieren a lo sumo en 1.
+\subsubsection*{Solución}
+
+
+\section*{Parte 3}
+\section*{Parte 4}
+\section*{Parte 5}
 
 \end{document}
